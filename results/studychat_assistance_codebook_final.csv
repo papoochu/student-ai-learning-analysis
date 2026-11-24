@@ -1,0 +1,9 @@
+﻿Label,Definition,Example
+Concept Explanation,"Requests an explanation of a concept, principle, or idea.",What is cross-validation?
+Debugging,Requests help identifying or fixing an error or malfunction.,Why does my code produce a KeyError?
+Code Generation,"Requests AI to write, complete, translate, or convert programming code. Includes translating SQL queries into Pandas/Python code, implementing functions, and generating code from specifications.",Convert this SQL query into Pandas code.
+Code Explanation / Review,"Requests explanation, evaluation, or feedback on existing code.",Can you explain what this function does?
+Problem Solving,"Requests a finished answer or completion of a question or task, rather than primarily an explanation of the process. Includes math and logic answers, logistical decisions, copy-paste-ready responses, and writing tasks.",Solve this equation and give me the answer; write a short response I can paste into my assignment.
+Data Processing,"Requests cleaning, formatting, transformation, analysis, or manipulation of data itself. Use when the requested output is processed data, a table, or a data result rather than newly written programming code.",Remove duplicate rows from this dataset.
+Assignment Guidance,Requests clarification of assignment instructions or requirements.,What is part three asking me to do?
+Other / Unclear,The assistance type cannot be determined or does not fit.,Do it again.

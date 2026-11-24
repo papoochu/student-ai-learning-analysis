@@ -1,0 +1,12 @@
+﻿Rule,Guideline
+Primary assistance type,"Classify the action the student wants AI to perform, not merely the academic subject being discussed."
+Overlapping categories,"If multiple categories apply, select the student's main requested action as the primary label."
+Debugging priority,"If the student asks AI to diagnose or fix something that is not working, use Debugging, even if the request involves code or data."
+Unclear follow-up requests,"Check surrounding conversation context when available. If the intended assistance remains unclear, use Other / Unclear and flag the prompt."
+Problem Solving: answer or deliverable,"Use Problem Solving when the main request is to provide the final answer or complete a non-code task (math, logic, logistics, text/writing, or copy-paste-ready responses), rather than to teach the underlying concept."
+Problem Solving vs. Concept Explanation,"If the student asks why or how something works, choose Concept Explanation. If they primarily ask for the final answer or finished response, choose Problem Solving."
+Problem Solving vs. specialized categories,"Keep Code Generation for explicit requests to write/complete executable code, Data Processing for data cleaning/conversion/querying, and Debugging for fixing errors. Use Problem Solving for completed answers or writing tasks that do not chiefly fit those categories."
+Copy-paste requests,Asking for copy-paste-ready text or a final response is Problem Solving unless the requested output is specifically code or data transformation.
+Code generation vs. data processing,"Use Code Generation when the requested output is new, completed, or translated code, including SQL-to-Pandas conversions. Use Data Processing when the requested output is cleaned, formatted, transformed, or analyzed data itself."
+Problem Solving vs. Data Processing,"Use Data Processing when the main task is to manipulate or present data. Use Problem Solving for completed answers to other questions or tasks, including math, logic, logistics, and writing."
+SQL to Pandas conversion,Always classify requests to translate SQL queries into Pandas or Python code as Code Generation.

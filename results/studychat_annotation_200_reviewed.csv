@@ -1,0 +1,3105 @@
+﻿sample_id,userId,chatId,prompt,human_label,ambiguous,notes,review_status
+P001,113ba590-f051-7017-0685-470ebc1c654d,7b7cde0c-743f-4c02-aa7f-529481a944da,how should I tokenize my data before running cosine similarity on it?,Data Processing,No,,verified
+P002,01cbf550-9041-70f1-3bbe-92176ffa992e,3892fb09-1c0f-4139-8cc8-00ba17a97384,"Is this correct for the following spec:
+
+To check:
+
+def build_tree(self, document):
+        for word in document.split():
+            node = self.root
+            for char in word:
+                # TODO for students
+                if char not in node.children:
+                    node.children[char] = Node()
+                node = node.children[char]
+            node.is_word = True
+
+
+Spec:
+
+What it does:
+
+Takes a text document as input.
+Splits the document into individual words.
+Inserts each word into a tree (prefix tree) data structure.
+Each character of a word becomes a node in the tree.
+Your task:
+
+Complete the for loop within the build_tree method.
+
+This file has a Node class defined for you -
+
+Each Node represents a single character within a word. The `Node class has 1 attribute -
+children- This is a dictionary that stores -
+Keys - Characters that which follow the current character in a word.
+Values -Nodeobjects, representing the next character in the sequence. **You might (most likely will) want theNodeclass keep track of more things depending on how you implement yousuggest methods.**
+
+class Node:
+    # TODO
+    def __init__(self):
+        self.children = {}
+        self.is_word = False",Code Explanation / Review,No,,verified
+P003,91cb75e0-00e1-70ae-d581-d5924359d3b1,7a72cecf-fa24-4b4f-a7da-ad50123b065a,"I have a main.py with this in it
+
+from autocomplete import Autocomplete
+from utilities import read_file, create_gui
+
+autocomplete_engine = Autocomplete()
+filename = 'genZ.txt'
+read_file(filename, autocomplete_engine)
+create_gui(autocomplete_engine)
+
+
+
+do i use that instead? how?",Code Explanation / Review,Yes,,verified
+P004,61bbc5f0-2041-7061-260b-a4d10ca29e45,1bc177b8-2f1d-47fa-9953-2a1315172f06,"I have this function and code:
+def train_model(train_loader, num_epochs, learning_rate):
+  # we have provided the loss and optimizer below
+  criterion = nn.BCELoss()
+  optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+  train_losses = []
+
+  for epoch in range(num_epochs):
+      total_loss = 0
+      # TODO: Compute the Gradient and Loss by iterating train_loader
+      for i, (inputs, labels) in enumerate(train_loader):
+         outputs = model(inputs)
+         loss = criterion(outputs, labels)
+
+         optimizer.zero_grad()
+         loss.backward()
+         optimizer.step()
+
+         total_loss += loss.item()
+      # TODO: Print and store loss at each epoch
+      avg_loss = total_loss/len(train_loader)
+      train_losses.append(avg_loss)
+      print(f""Epoch [{epoch+1}/{num_epochs}], Loss: {avg_loss:.4f}"")
+  return train_losses
+
+num_epochs = 20
+learning_rate = 0.001
+train_losses = train_model(train_loader, num_epochs, learning_rate)
+
+how can i plot the training loss curve? I want epoch number to be x-axis and loss to be y-axis",Code Explanation / Review,No,,verified
+P005,514b6590-9031-70f3-bdf0-6fb6ff753346,22d7ba47-4997-48fe-80ed-6ba6eeead437,how to get percentages of each class in a prediction for logistic regression,Concept Explanation,Yes,,verified
+P006,313b35f0-a0f1-70ff-7490-f9e5e8fea858,b8df6e8f-9a15-4dad-8180-749fa1b0d90c,can i use a value in .any(),Code Explanation / Review,No,,verified
+P007,b1cb15d0-c071-70b9-1731-442bca494a97,628b4935-882d-4771-ad89-d5e400816810,there is no isEndOfWord,Debugging,Yes,,verified
+P008,e12b2510-60e1-709a-9903-b758e497809a,23873522-ce9c-48e1-8b63-714ceb9a8063,"         age    bp       bgr        bu        sc       sod       pot  \
+0   0.202703  0.75  0.158798  0.196078  0.160494  0.166667  0.206897   
+1   0.905405  1.00  0.965665  0.522876  0.641975  0.666667  0.000000   
+3   0.743243  0.50  0.442060  0.901961  0.432099  0.500000  0.793103   
+4   0.729730  0.75  0.150215  0.281046  0.234568  0.533333  0.793103   
+6   0.540541  0.00  0.399142  0.535948  0.358025  0.700000  0.379310   
+8   0.675676  0.75  0.253219  0.633987  0.777778  0.366667  0.655172   
+10  0.716216  0.50  1.000000  0.163399  0.111111  0.066667  0.206897   
+13  0.729730  0.00  0.935622  0.169935  0.160494  0.333333  0.034483   
+17  0.000000  0.00  0.103004  0.372549  0.074074  0.500000  0.689655   
+19  0.878378  0.00  0.206009  0.751634  0.604938  0.533333  0.689655   
+20  0.851351  0.25  0.618026  0.562092  0.728395  0.000000  0.344828   
+21  0.878378  0.25  0.639485  0.470588  0.395062  0.433333  0.517241   
+22  0.783784  0.00  0.725322  0.313725  0.481481  0.566667  0.862069   
+24  0.662162  0.50  0.618026  0.411765  0.432099  0.566667  0.689655   
+25  0.770270  1.00  0.901288  0.163399  0.345679  0.766667  0.206897   
+
+        hemo       pcv      wbcc  ...  pc_normal  pcc_present  ba_present  \
+0   0.059406  0.000000  0.653226  ...      False         True        True   
+1   0.148515  0.225806  0.217742  ...      False         True       False   
+3   0.000000  0.032258  0.395161  ...      False        False       False   
+4   0.336634  0.322581  0.500000  ...       True        False       False   
+6   0.207921  0.161290  0.830645  ...       True        False       False   
+8   0.138614  0.193548  0.169355  ...      False        False       False   
+10  0.267327  0.387097  0.532258  ...       True        False       False   
+13  0.019802  0.064516  0.879032  ...      False         True       False   
+17  0.217822  0.225806  1.000000  ...      False        False        True   
+19  0.366337  0.387097  0.879032  ...       True        False       False   
+20  0.168317  0.161290  0.580645  ...      False         True        True   
+21  0.267327  0.322581  0.104839  ...      False         True        True   
+22  0.178218  0.193548  0.258065  ...      False        False        True   
+24  0.316832  0.354839  0.250000  ...      False         True        True   
+25  0.524752  0.548387  0.443548  ...       True        False        True   
+
+    htn_yes  dm_yes  cad_yes  appet_poor  pe_yes  ane_yes  Target_notckd  
+0     False   False    False       False   False     True          False  
+1      True    True     True        True   False    False          False  
+3      True    True     True        True    True     True          False  
+4     False   False    False       False   False    False          False  
+6      True    True    False       False   False    False          False  
+8      True   False    False       False   False    False          False  
+10    False    True    False        True   False    False          False  
+13     True   False    False        True   False     True          False  
+17    False   False    False        True   False    False          False  
+19     True    True    False        True    True    False          False  
+20     True    True     True       False    True     True          False  
+21     True    True     True       False   False    False          False  
+22     True    True    False        True    True    False          False  
+24     True    True    False       False    True    False          False  
+25     True   False     True       False   False    False          False  
+
+[15 rows x 24 columns]
+convert the output to a markdown table
+",Data Processing,No,,verified
+P009,f1abd540-a0f1-70c2-5c22-206895f355ca,d732fb2c-c203-433d-9f0a-6c7a945eaee5,"### Section 1.3 Tensor Operations
+
+Tensor operations in PyTorch include a variety of element-wise and matrix operations such as addition, subtraction, multiplication, and division. Common operations include:  
+
+- **Element-wise Operations**: Addition (`+`), subtraction (`-`), multiplication (`*`), and division (`/`).  
+- **Matrix Operations**: Matrix multiplication (`torch.matmul()` or `@` operator), transposition (`tensor.T`), and inversion.  
+- **Reduction Operations**: Summation (`torch.sum()`), mean (`torch.mean()`), max/min (`torch.max()` / `torch.min()`).  
+- **Reshaping**: Changing tensor dimensions using `torch.reshape()`, `torch.view()`, or `torch.permute()`.  
+- **Concatenation and Stacking**: `torch.cat()` for joining along a dimension, `torch.stack()` for stacking along a new dimension.  
+- **In-place Operations**: Operations ending in `_` (e.g., `tensor.add_()`) modify the tensor directly.  
+
+### TODO: In the following section please update the **None** values with your answer in the subsequent codeblocks    # ### Tensor Operations
+
+# TODO: Standard numpy-like indexing and slicing:
+tensor = torch.ones(4, 4)
+
+# TODO: print the first row of the tensor
+first_row = None
+print('First row: ', first_row)
+
+# TODO: print the first column of the tensor
+first_column = None
+print('First column: ', first_column)
+
+# TODO: print the first column of the tensor
+last_column = None
+print('Last column:', last_column)
+
+# TODO: Update the tensor so that index 1 column is all zeros and print the tensor
+
+print('Updated tensor:', tensor )",Code Generation,Yes,,verified
+P010,e14bd5d0-0021-70f1-8b50-efac4033a68a,a02ed3e0-98b0-4cef-a75a-10acb633b116,How can I have the path cost in each node? Would it be another dictionary where for each char there is a associated path cost?,Problem Solving,Yes,,verified
+P011,51ebb5a0-6021-7085-ff7f-676d2ac635a3,0c2e7765-fcf3-43d0-a111-21364d52163c,hello!,Other / Unclear,Yes,,verified
+P012,c1abe560-20f1-70dc-393f-5a083011e23f,7f315b67-145e-40b7-bc7a-33ff2f914b2a,marhaba habibi,Other / Unclear,Yes,,verified
+P013,d14be530-3021-7083-6ee6-f96210849e13,19a7497f-96b2-414b-854f-8dc9ebfa0510,"**SQL Query**
+```sql
+SELECT Target, COUNT(*) AS count
+FROM your_table_name
+GROUP BY Target;
+```
+
+convert this SQL code to to a pandas query, then describe what it does.",Code Generation,No,,verified
+P014,e1cb8510-60e1-709a-53ce-18a04547e565,93927181-85bd-448e-9df7-1df7c6227103,how do u get a substring of a string,Concept Explanation,No,,verified
+P015,411be510-8031-7076-69a0-27626d9dd276,29dc19ce-abd1-497a-b397-c24d0be86d6b,"error, ""(alias) function empty<T>(): List<T>
+import empty
+The empty list node constructor
+
+@returns — An empty list node
+
+This comparison appears to be unintentional because the types 'Readonly<_List<(n: T) => T>>' and '<T>() => Readonly<_List<T>>' have no overlap.ts(2367)"" and ""const tailList: () => Readonly<_List<(n: T) => T>>
+Argument of type '() => Readonly<_List<(n: T) => T>>' is not assignable to parameter of type 'Readonly<_List<(n: T) => T>>'."" and ""(parameter) value: T
+Expected 0 arguments, but got 1.""",Debugging,No,,verified
+P016,e1fbb500-50c1-7067-3f5b-f2a306231361,0c5db224-4a12-4107-b79d-9b38611861ec,"also, neatly provide with a markdown table in your answer ",Other / Unclear,Yes,,verified
+P017,115ba5a0-f021-7098-63b7-6750e7705b72,59d57e18-72d1-4d8a-9930-adbb42bc292e,For the code I provided should the answer be the joint probability or just the given probability?,Assignment Guidance,Yes,,verified
+P018,61dba5f0-00f1-7082-7b9c-b35054207615,955e7865-85c6-43ee-919f-ece98f4226ba,"complete this method:
+
+    def build_tree(self, document):
+        for word in document.split():
+            node = self.root
+            for char in word:",Code Generation,No,,verified
+P019,411bd580-f051-7091-c64b-39f944fda7b6,504a3fa7-c96e-4757-8e1b-4986be5adc13,could you write the code using a heapq,Code Generation,No,,verified
+P020,c10ba560-5051-7080-335e-1e8aaac1f227,dd93cc08-83a0-4445-843f-c16ab37bf7a1,"make a build_tree(self, document) method",Code Generation,No,,verified
+P021,e11ba5c0-60e1-7014-3010-a78f186a4362,e84fff39-6d2a-4ed8-a3eb-6c30ea7e2fd7,"Doing polynomial regression with sklearn's Pipeline feature, vs doing a polynomial fit transform --> linear regression one after the other, gives very slightly different outputs. any idea why?",Concept Explanation,Yes,,verified
+P022,819bd5f0-c0b1-70e2-e723-7bfd5aa9f3ca,436af23c-d184-4df0-8762-3a4baf28850f,"convert this to a markdown table  age     bp    bgr     bu   sc    sod  pot  hemo   pcv     wbcc  ...  \
+2   61.0   80.0  173.0  148.0  3.9  135.0  5.2   7.7  24.0   9200.0  ...   
+5   63.0  100.0  280.0   35.0  3.2  143.0  3.5  13.0  40.0   9800.0  ...   
+7   73.0   80.0  253.0  142.0  4.6  138.0  5.8  10.5  33.0   7200.0  ...   
+8   21.0   90.0  107.0   40.0  1.7  125.0  3.5   8.3  23.0  12400.0  ...   
+9   64.0  100.0  163.0   54.0  7.2  140.0  4.6   7.9  26.0   7500.0  ...   
+10  60.0   60.0  288.0   36.0  1.7  130.0  3.0   7.9  25.0  15200.0  ...   
+12  56.0   90.0  129.0  107.0  6.7  131.0  4.8   9.1  29.0   6400.0  ...   
+13  69.0   70.0  214.0   96.0  6.3  120.0  3.9   9.4  28.0  11500.0  ...   
+15  46.0   60.0  163.0   92.0  3.3  141.0  4.0   9.8  28.0  14600.0  ...   
+18  62.0   70.0  122.0   42.0  1.7  136.0  4.7  12.6  39.0   7900.0  ...   
+19  55.0   80.0  214.0   73.0  3.9  137.0  4.9  10.9  34.0   7400.0  ...   
+20  64.0   60.0  239.0   58.0  4.3  137.0  5.4   9.5  29.0   7500.0  ...   
+22  71.0   60.0  118.0  125.0  5.3  136.0  4.9  11.4  35.0  15200.0  ...   
+23  71.0   70.0  219.0   82.0  3.6  133.0  4.4  10.4  33.0   5600.0  ...   
+29  59.0   80.0  303.0   35.0  1.3  122.0  3.5  10.4  35.0  10900.0  ...   
+
+    dm_yes  cad_no  cad_yes  appet_good  appet_poor  pe_no  pe_yes  ane_no  \
+2     True   False     True       False        True  False    True   False   
+5    False   False     True        True       False   True   False    True   
+7     True   False     True        True       False   True   False    True   
+8    False    True    False        True       False   True   False   False   
+9     True    True    False        True       False  False    True    True   
+10   False    True    False       False        True   True   False   False   
+12   False    True    False        True       False   True   False    True   
+...
+23    False        True  
+29    False        True  ",Data Processing,No,,verified
+P023,817b9500-8071-700f-6d35-00db749ffca6,64107bd6-e0bc-481a-9bfe-67ad1d8573bd,"from collections import deque
+import heapq
+import random
+import string
+
+
+class Node:
+    #TODO
+    def __init__(self):
+        self.children = {}
+        self.is_word = False
+
+class Autocomplete():
+    def __init__(self, parent=None, document=""""):
+        self.root = Node()
+        self.suggest = self.suggest_bfs #Default, change this to `suggest_dfs/ucs/bfs` based on which one you wish to use.
+
+    
+    
+    def build_tree(self, document):
+        for word in document.split():
+            node = self.root
+            for char in word:
+                #TODO for students
+                if char not in node.children:
+                    node.children[char] = Node
+                node = node.children[char]
+            node.is_word = True
+
+This is what i have
+            
+",Code Generation,Yes,,verified
+P024,218b1530-20e1-701a-ba31-9c86c7da05bc,05515f67-9a40-4999-b025-085c82ac9ee2,"No, we are using pytorch still.",Other / Unclear,Yes,,verified
+P025,a1dba540-c071-705a-e705-3f35ce26988f,aa516996-cbf1-4dc5-8451-d133e420024f,"What commands would go into completing this:
+# Using the PolynomialFeatures library perform another regression on an augmented dataset of degree 2
+# Perform k-fold cross validation (as above)
+
+# Report on the metrics and output the resultant equation as you did in Part 3.",Assignment Guidance,Yes,,verified
+P026,113bc5a0-00c1-70a8-1558-53c8f78b1a99,ea3e63fd-2313-4dc7-a09e-6b4ad39a5657,explain the intuition behind the way in which it was coded,Code Explanation / Review,No,,verified
+P027,d1cba5c0-4041-7099-95fd-aac383e0a3cb,639ab52e-b101-498b-9530-779a5d399076,"# i. Use sklearn to train a Neural Network (MLP Classifier) on the training set
+from sklearn.neural_network import MLPClassifier
+mlp_model = MLPClassifier(max_iter=500, random_state=42)
+mlp_model.fit(X_train, y_train)
+
+# ii. For a sample datapoint, predict the probabilities for each possible class
+sample_point = X_test.iloc[0:1]
+predicted_probabilities_mlp = mlp_model.predict_proba(sample_point)
+print(""predicted probabilities for each class (Neural Network):"", predicted_probabilities_mlp)
+# iii. Report on the score for the Neural Network, what does the score measure?
+mlp_accuracy = mlp_model.score(X_test, y_test)
+print(""Accuracy of the Neural Network model:"", mlp_accuracy)
+# iv: Experiment with different options for the neural network, report on your best configuration
+
+help me do part iv",Assignment Guidance,Yes,,verified
+P028,71cb15a0-d0f1-708c-82ad-a7312d9acb9b,6a7c5e84-1236-4d66-89a9-dd833827f8c7,"make this into a markdown table please:     unique_id       age    bp       bgr        bu        sc       sod  \
+0      474407  0.194805  0.75  0.158798  0.196078  0.160494  0.358974   
+1      137148  0.870130  1.00  0.965665  0.522876  0.641975  0.743590   
+2      484175  0.610390  0.75  0.000000  0.633987  0.839506  0.076923   
+3      343710  0.714286  0.50  0.442060  0.901961  0.432099  0.615385   
+4      532520  0.701299  0.75  0.150215  0.281046  0.234568  0.641026   
+6      546225  0.519481  0.00  0.399142  0.535948  0.358025  0.769231   
+8      514721  0.649351  0.75  0.253219  0.633987  0.777778  0.512821   
+9      899916  1.000000  0.25  0.137339  0.326797  0.271605  0.102564   
+10     621332  0.688312  0.50  1.000000  0.163399  0.111111  0.282051   
+13     481293  0.701299  0.00  0.935622  0.169935  0.160494  0.487179   
+15     297893  0.805195  0.50  0.373391  0.522876  0.456790  0.487179   
+17     615697  0.000000  0.00  0.103004  0.372549  0.074074  0.615385   
+18     337834  0.545455  0.25  0.201717  0.300654  0.419753  0.000000   
+19     843362  0.844156  0.00  0.206009  0.751634  0.604938  0.641026   
+20     995177  0.818182  0.25  0.618026  0.562092  0.728395  0.230769   
+
+         pot      hemo       pcv  ...  pc_normal  pcc_present  ba_present  \
+0   0.256410  0.221311  0.184211  ...      False         True        True   
+1   0.102564  0.295082  0.368421  ...      False         True       False   
+2   0.307692  0.319672  0.342105  ...      False         True       False   
+3   0.692308  0.172131  0.210526  ...      False        False       False   
+4   0.692308  0.450820  0.447368  ...       True        False       False   
+6   0.384615  0.344262  0.315789  ...       True        False       False   
+8   0.589744  0.286885  0.342105  ...      False        False       False   
+9   0.820513  0.254098  0.263158  ...       True        False       False   
+10  0.256410  0.393443  0.500000  ...       True        False       False   
+13  0.128205  0.188525  0.236842  ...      False         True       False   
+15  1.000000  0.000000  0.000000  ...      False         True        True   
+17  0.615385  0.352459  0.368421  ...      False        False        True   
+18  0.000000  0.459016  0.421053  ...      False         True       False   
+19  0.615385  0.475410  0.500000  ...       True        False       False   
+20  0.358974  0.311475  0.315789  ...      False         True        True   
+
+    htn_yes  dm_yes  cad_yes  appet_good  pe_yes  ane_yes  Target_ckd  
+0     False   False    False        True   False     True        True  
+1      True    True     True       False   False    False        True  
+2      True    True    False       False   False     True        True  
+3      True    True     True       False    True     True        True  
+4     False   False    False        True   False    False        True  
+6      True    True    False        True   False    False        True  
+8      True   False    False        True   False    False        True  
+9      True   False    False       False   False     True        True  
+10    False    True    False       False   False    False        True  
+13     True   False    False       False   False     True        True  
+15     True    True     True       False    True    False        True  
+17    False   False    False       False   False    False        True  
+18     True   False    False       False    True     True        True  
+19     True    True    False       False    True    False        True  
+20     True    True     True        True    True     True        True  
+
+[15 rows x 25 columns]
+",Data Processing,No,,verified
+P029,c1eb8590-5071-70c5-90a9-bcbf8ca28ccb,d72f5cff-f0f5-4982-9db2-26f0d03aa6cf,"# Use the cross_val_score function to repeat your experiment across many shuffles of the data
+# For grading consistency use n_splits=5 and random_state=42
+- how to use cross_val_score ",Concept Explanation,No,,verified
+P030,a1bbb550-8001-709c-3ebb-799cd4aa893f,2f3506d1-57fb-4aa8-b7cc-feb621de5b8e,"To implement the autocomplete feature, you would build a tree of characters, which will be the search space for this search problem. In your starter code, you're given a document (a txt file) of several words. Imagine each word in your document is broken down into its individual letters. Now, picture these letters arranged in a single tree-like structure. In autocomplete, we're not just looking for a single goal node. We want to find all the goal nodes (words) that follow from the prefix. Furthermore, we're interested in the entire path from the root to each goal node, as this path represents the complete suggested word. What it does:
+
+Implements the Breadth-First Search (BFS) algorithm on the tree.
+Takes a prefix (the letters the user has typed so far) as input.
+Finds all words in the tree that start with the prefix.
+Your task:
+
+Start from the node that corresponds to the last character of the prefix.
+Using BFS traverse the sub tree and build a list of suggestions. class Node:
+    def __init__(self):
+        self.children = {}
+        self.char = ''
+        self.isEnd = False
+
+    def setChar(self, char):
+        self.char = char
+
+    def setEnd(self, isEnd):
+        self.isEnd = isEnd def build_tree(self, document):
+        for word in document.split():
+            node = self.root
+            for char in word:
+                #Check to see if the char is in the current node's dictionary.
+                #   If not, create a new node to be added to the dictionary.
+                #   Either way, set the current node to the node of the current char.
+                #   If we exit word loop, then we know it is the end of the word and thus that node is set to and end node
+                if char not in node.children:
+                    newNode = Node()
+                    newNode.setChar(char)
+                    node.children[char] = newNode
+                node = node.children[char]
+            node.setEnd(True)",Code Generation,Yes,,verified
+P031,511bf560-b061-7030-1534-373d6182148d,32501b7a-63a0-40a2-b7f6-d33cf0091a06,"what if len(tables) is greater than n? you only need to slice it if the length of the sequence is larger than the n value(table size). You could have like a condition to check that and then update your sequence based on that. However, in the case where your table size is large enough for the sequence, we dont have to slice it and we can just update it and calculate probabilities based on that.",Code Explanation / Review,Yes,,verified
+P032,51abb5c0-8061-70ad-a2f4-55de1f7ca8e9,b06fc80d-2d09-4e95-9615-c407c71f1b78,"Sample Prediction Class: ['setosa']
+Sample Prediction Probabilities: [[9.78915954e-01 2.10840214e-02 2.47180842e-08]]
+Score: 1.0
+Coefficients: [[-0.42830334  0.96729205 -2.44742526 -1.03780396]
+ [ 0.5130202  -0.22029888 -0.21604909 -0.84453741]
+ [-0.08471686 -0.74699317  2.66347435  1.88234137]]
+Intercepts: [  9.54356486   1.89887279 -11.44243765]",Data Processing,Yes,,verified
+P033,a1eb05a0-7031-707b-b065-0f30c86f0a6e,35236755-be91-4fc7-8f0a-895f965e6c2e,how to add something ti the dataframe later,Code Explanation / Review,No,,verified
+P034,516b7570-00e1-700e-b368-e544714cb230,b833f8a1-7f35-4302-85d0-88b60129d29a,How do you print columns and rows in pytorch?,Code Explanation / Review,No,,verified
+P035,61abe5e0-d021-7066-78e5-8732da2c09a0,a16f1d5c-ec24-4c5f-b1b5-9a6ba5878310,"numerical_columns = ['age', 'bp', 'bgr', 'bu', 'sc', 'sod', 'pot', 'hemo', 'pcv', 'wbcc', 'rbcc']
+df = pd.DataFrame(df_dummies)
+mean = df['numerical_column'].mean()
+std_dev = df['numerical_column'].std()
+# Print the dataset
+display(df)
+
+File pandas\\_libs\\hashtable_class_helper.pxi:7081, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+
+File pandas\\_libs\\hashtable_class_helper.pxi:7089, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+
+KeyError: 'numerical_column'
+
+The above exception was the direct cause of the following exception:
+
+KeyError                                  Traceback (most recent call last)
+Cell In[34], line 4
+      2 numerical_columns = ['age', 'bp', 'bgr', 'bu', 'sc', 'sod', 'pot', 'hemo', 'pcv', 'wbcc', 'rbcc']
+      3 df = pd.DataFrame(df_dummies)
+----> 4 mean = df['numerical_column'].mean()
+      5 std_dev = df['numerical_column'].std()
+...
+   3815     #  InvalidIndexError. Otherwise we fall through and re-raise
+   3816     #  the TypeError.
+   3817     self._check_indexing_error(key)
+
+KeyError: 'numerical_column'
+",Debugging,No,,verified
+P036,81eb45d0-00d1-7089-fd06-0ffbbe5e2c7a,1865691f-4e39-487d-8dfb-72d8f31b77bd,"now implement this based on what i already have above in the code# Using the PolynomialFeatures library perform another regression on an augmented dataset of degree 2
+# Perform k-fold cross validation (as above)",Code Generation,No,,verified
+P037,b19b0560-c011-70d1-0a4f-c32cfa1ae4cd,9613f846-0d2c-46cd-b64c-363e0765e9d5,Give your answers in a maximum 4 sentence narrative paragraph explanation,Problem Solving,Yes,,verified
+P038,b14bd5f0-0011-704d-7e86-b55f1b5f014a,302b2939-6ce7-4a07-8f8c-a01b7b6f456c,"def calculate_probability(sequence, char, tables):
+    """"""
+    Calculates the probability of a character `char` occurring immediately after 
+    the given `sequence` of characters, using the precomputed frequency tables.
+    
+    - Parameters:
+        - sequence: The preceding sequence of characters (context) as a string.
+        - char: The character whose probability of occurring next is to be calculated.
+        - tables: The list of frequency tables (as returned by create_frequency_tables).
+    - Returns:
+        - A probability value (float) for char occurring after sequence.
+    """"""
+    n = len(tables) 
+    if len(sequence) >= n:
+        
+        context = sequence[-(n-1):] if n > 1 else """"
+    else:
+        context = sequence  
+
+    while True:
+        if context == """":
+            total_count = 0
+            for ch, ctx_dict in tables[0].items():
+                total_count += ctx_dict.get("""", 0)
+            freq_char = tables[0].get(char, {}).get("""", 0)
+            return freq_char / total_count if total_count > 0 else 0.0
+        
+        L = len(context)  
+
+        prev_last_char = context[-1]                        
+        prev_prefix = context[:-1]                          
+        freq_context = tables[L-1].get(prev_last_char, {}).get(prev_prefix, 0)
+        
+        if freq_context == 0:
+            context = context[1:] 
+            continue
+        
+        freq_seq_plus_char = 0
+        if L < len(tables): 
+            freq_seq_plus_char = tables[L].get(char, {}).get(context, 0)
+        
+        return freq_seq_plus_char / freq_context
+
+
+does this code look correct to calculate probability? i feel like there is too much code, maybe some is unnececary?",Code Generation,No,,verified
+P039,d10bd540-b0a1-702b-2353-0f09ca339f59,080fd328-e162-4f29-b98e-dc93c7e7bf0f,"SELECT Target, COUNT(*) AS count
+FROM your_table_name
+GROUP BY Target;
+convert this to a pandas query",Code Generation,No,,verified
+P040,719b2530-2001-7002-244b-0c90ec1dc48d,ec2587f4-8c73-4712-8e51-65d0d2cefb08,does sum really work to add the duplicates,Concept Explanation,Yes,,verified
+P041,711b6580-50d1-70c7-2c33-364aab9519a1,88a6a1bc-2fe2-418e-8373-8f855778d4b7,"import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+from tqdm import tqdm
+from torch.utils.data import Dataset, DataLoader
+import re
+
+# ===================== Dataset =====================
+class CharDataset(Dataset):
+    def __init__(self, data, sequence_length, stride, vocab_size):
+        self.data = data
+        self.sequence_length = sequence_length
+        self.stride = stride
+        self.vocab_size = vocab_size
+        self.sequences = []
+        self.targets = []
+        
+        # Create overlapping sequences with stride
+        for i in range(0, len(data) - sequence_length, stride):
+            self.sequences.append(data[i:i + sequence_length])
+            self.targets.append(data[i + 1:i + sequence_length + 1])
+
+    def __len__(self):
+        return len(self.sequences)
+
+    def __getitem__(self, idx):
+        sequence = torch.tensor(self.sequences[idx], dtype=torch.long)
+        target = torch.tensor(self.targets[idx], dtype=torch.long)
+        return sequence, target
+
+# ===================== Model =====================
+class CharRNN(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size, embedding_dim=30):
+        super().__init__()
+        self.hidden_size = hidden_size
+        self.embedding = nn.Embedding(output_size, embedding_dim)
+        # TODO: Initialize your model parameters as needed e.g. W_e, W_h, etc.
+
+
+    def forward(self, x, hidden):
+        """"""
+        x in [b, l] # b is batch_size and l is sequence length
+        """"""
+        x_embed = self.embedding(x)  # [b=batch_size, l=sequence_length, e=embedding_dim]
+        b, l, _ = x_embed.size()
+        x_embed = x_embed.transpose(0, 1) # [l, b, e]
+        if hidden is None:
+            h_t_minus_1 = self.init_hidden(b)
+        else:
+            h_t_minus_1 = hidden
+        output = []
+        for t in range(l):
+            #  TODO: Implement forward pass for a single RNN timestamp, append the hidden to the output 
+            pass
+        output = torch.stack(output) # [l, b, e]
+        output = output.transpose(0, 1) # [b, l, e]
+        
+        # TODO set these values after completing the loop above
+        final_hidden = None # [b, h] 
+        logits = None # [b, l, vocab_size=v] 
+        return logits, final_hidden
+    
+    def init_hidden(self, batch_size):
+        return torch.zeros(batch_size, self.hidden_size).to(device)
+
+# ===================== Training =====================
+device = 'cpu'
+print(f""Using device: {device}"")
+
+def read_file(filename):
+    with open(filename, ""r"", encoding=""utf-8"") as file:
+        text = file.read().lower()
+        text = re.sub(r'[^a-z.,!?;:()\[\] ]+', '', text)
+    return text
+
+# To debug your model you should start with a simple sequence an RNN should predict this perfectly
+sequence = ""abcdefghijklmnopqrstuvwxyz"" * 100
+# sequence = read_file(""warandpeace.txt"") # Uncomment to read from file
+vocab = sorted(set(sequence))
+char_to_idx = {} # TODO: Create a mapping from characters to indices
+idx_to_char = {} # TODO: Create the reverse mapping
+data = [char_to_idx[char] for char in sequence]
+
+# TODO Understand and adjust the hyperparameters once the code is running
+sequence_length = 1000 # Length of each input sequence
+stride = 10            # Stride for creating sequences
+embedding_dim = 2      # Dimension of character embeddings
+hidden_size = 1        # Number of features in the hidden state of the RNN
+learning_rate = 200    # Learning rate for the optimizer
+num_epochs = 1         # Number of epochs to train
+batch_size = 64        # Batch size for training
+vocab_size = len(vocab)
+input_size = len(vocab)
+output_size = len(vocab)
+
+model = CharRNN(input_size, hidden_size, output_size).to(device)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+data_tensor = torch.tensor(data, dtype=torch.long)
+train_size = int(len(data_tensor) * 0.9)
+#TODO: Split the data into 90:10 ratio with PyTorch indexing
+train_data = None
+test_data = None 
+
+train_dataset = CharDataset(train_data, sequence_length, stride, output_size)
+train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
+
+# Training loop
+for epoch in range(num_epochs):
+    total_loss = 0
+    hidden = None
+    for batch_inputs, batch_targets in tqdm(train_loader, desc=f""Epoch {epoch+1}/{num_epochs}""):
+        batch_inputs, batch_targets = batch_inputs.to(device), batch_targets.to(device)
+
+        output, hidden = model(batch_inputs, hidden)
+        # Detach removes the hidden state from the computational graph.
+        # This is prevents backpropagating through the full history, and
+        # is important for stability in training RNNs
+        hidden = hidden.detach()
+
+        # TODO compute the loss, backpropagate gradients, and update total_loss
+
+
+    print(f""Epoch {epoch+1}, Loss: {total_loss/len(train_loader):.4f}"")
+
+# Test the model
+# TODO: Implement a test loop to evaluate the model on the test set
+
+# ===================== Text Generation =====================
+def sample_from_output(logits, temperature=1.0):
+    """"""
+    Sample from the logits with temperature scaling.
+    logits: Tensor of shape [batch_size, vocab_size] (raw scores, before softmax)
+    temperature: a float controlling the randomness (higher = more random)
+    """"""
+    if temperature <= 0:
+        temperature = 0.00000001
+    # Apply temperature scaling to logits (increase randomness with higher values)
+    scaled_logits = logits / temperature 
+    # Apply softmax to convert logits to probabilities
+    probabilities = F.softmax(scaled_logits, dim=1)
+    
+    # Sample from the probability distribution
+    sampled_idx = torch.multinomial(probabilities, 1)
+    return sampled_idx
+
+def generate_text(model, start_text, n, k, temperature=1.0):
+    """"""
+        model: The trained RNN model used for character prediction.
+        start_text: The initial string of length `n` provided by the user to start the generation.
+        n: The length of the initial input sequence.
+        k: The number of additional characters to generate.
+        temperature: Optional
+        A scaling factor for randomness in predictions. Higher values (e.g., >1) make 
+            predictions more random, while lower values (e.g., <1) make predictions more deterministic.
+            Default is 1.0.
+    """"""
+    start_text = start_text.lower()
+    #TODO: Implement the rest of the generate_text function
+    # Hint: you will call sample_from_output() to sample a character from the logits
+
+    return ""TODO""
+
+print(""Training complete. Now you can generate text."")
+while True:
+    start_text = input(""Enter the initial text (n characters, or 'exit' to quit): "")
+    
+    if start_text.lower() == 'exit':
+        print(""Exiting..."")
+        break
+    
+    n = len(start_text) 
+    k = int(input(""Enter the number of characters to generate: ""))
+    temperature_input = input(""Enter the temperature value (1.0 is default, >1 is more random): "")
+    temperature = float(temperature_input) if temperature_input else 1.0
+    
+    completed_text = generate_text(model, start_text, n, k, temperature)
+    
+    print(f""Generated text: {completed_text}"")  there is a txt file called warandpeace.txt and here is run_complete.py ",Code Explanation / Review,Yes,,verified
+P042,f18bb5b0-d001-702f-a16a-a004877fccad,8d5b5879-ebf7-4701-a38b-cb075738d528,"Here is an output of a python pandas dataframe table consisting of 15 rows. Convert it into a markdown table:
+         age    bp       bgr        bu        sc       sod       pot  \
+2   0.743243  0.50  0.442060  0.901961  0.432099  0.500000  0.793103   
+5   0.770270  1.00  0.901288  0.163399  0.345679  0.766667  0.206897   
+7   0.905405  0.50  0.785408  0.862745  0.518519  0.600000  1.000000   
+8   0.202703  0.75  0.158798  0.196078  0.160494  0.166667  0.206897   
+9   0.783784  1.00  0.399142  0.287582  0.839506  0.666667  0.586207   
+10  0.729730  0.00  0.935622  0.169935  0.160494  0.333333  0.034483   
+12  0.675676  0.75  0.253219  0.633987  0.777778  0.366667  0.655172   
+13  0.851351  0.25  0.618026  0.562092  0.728395  0.000000  0.344828   
+15  0.540541  0.00  0.399142  0.535948  0.358025  0.700000  0.379310   
+18  0.756757  0.25  0.223176  0.209150  0.160494  0.533333  0.620690   
+19  0.662162  0.50  0.618026  0.411765  0.432099  0.566667  0.689655   
+20  0.783784  0.00  0.725322  0.313725  0.481481  0.566667  0.862069   
+22  0.878378  0.00  0.206009  0.751634  0.604938  0.533333  0.689655   
+23  0.878378  0.25  0.639485  0.470588  0.395062  0.433333  0.517241   
+29  0.716216  0.50  1.000000  0.163399  0.111111  0.066667  0.206897   
+
+        hemo       pcv      wbcc  ...  cad_no  cad_yes  appet_good  \
+2   0.000000  0.032258  0.395161  ...   False     True       False   
+5   0.524752  0.548387  0.443548  ...   False     True        True   
+7   0.277228  0.322581  0.233871  ...   False     True        True   
+8   0.059406  0.000000  0.653226  ...    True    False        True   
+9   0.019802  0.096774  0.258065  ...    True    False        True   
+10  0.019802  0.064516  0.879032  ...    True    False       False   
+12  0.138614  0.193548  0.169355  ...    True    False        True   
+13  0.168317  0.161290  0.580645  ...   False     True        True   
+15  0.207921  0.161290  0.830645  ...    True    False        True   
+18  0.485149  0.516129  0.290323  ...    True    False        True   
+19  0.316832  0.354839  0.250000  ...    True    False        True   
+20  0.178218  0.193548  0.258065  ...    True    False       False   
+22  0.366337  0.387097  0.879032  ...    True    False       False   
+23  0.267327  0.322581  0.104839  ...   False     True        True   
+29  0.267327  0.387097  0.532258  ...    True    False       False   
+
+    appet_poor  pe_no  pe_yes  ane_no  ane_yes  Target_ckd  Target_notckd  
+2         True  False    True   False     True        True          False  
+5        False   True   False    True    False        True          False  
+7        False   True   False    True    False        True          False  
+8        False   True   False   False     True        True          False  
+9        False  False    True    True    False        True          False  
+10        True   True   False   False     True        True          False  
+12       False   True   False    True    False        True          False  
+13       False  False    True   False     True        True          False  
+15       False   True   False    True    False        True          False  
+18       False   True   False    True    False        True          False  
+19       False  False    True    True    False        True          False  
+20        True  False    True    True    False        True          False  
+22        True  False    True    True    False        True          False  
+23       False   True   False    True    False        True          False  
+29        True   True   False    True    False        True          False  
+
+[15 rows x 35 columns]",Data Processing,No,,verified
+P043,813b4500-6031-701e-c56f-d60220a6081f,c67c1fe1-0d3a-41d1-9d25-5e2afd0fcb19,can you give me revised code?,Code Generation,Yes,,verified
+P044,21fb65c0-a0d1-7058-ae17-4b20090157aa,9b6ae370-9354-4780-9101-cab5dec52730,"Part 3.8: Remove Unnecessary columns
+Are there any columns in this dataset which are not appropriate for modeling and predictions? Which column(s)? Justify their exclusion and remove them
+
+Answer:
+
+
+#Remove that column
+
+# Print the dataset
+     ",Data Processing,No,,verified
+P045,11dbd5f0-80a1-7076-d1aa-848948d336e3,ce6ed62a-4788-4df2-b5b7-749aeca832c4,do u know what this assignment is about,Assignment Guidance,No,,verified
+P046,819b2520-80d1-7040-a2e8-a74594524790,aeac61f9-cce4-4edb-b81f-0789df508b51,"How can i get input indices: # This is Cell #16
+
+def sample_from_output(logits, temperature=1.0):
+    """"""
+    Sample from the logits with temperature scaling.
+    logits: Tensor of shape [batch_size, vocab_size] (raw scores, before softmax)
+    temperature: a float controlling the randomness (higher = more random)
+    """"""
+    # Apply temperature scaling to logits (increase randomness with higher values)
+    scaled_logits = logits / temperature  # Scale the logits by temperature
+    # Apply softmax to convert logits to probabilities
+    probabilities = F.softmax(scaled_logits, dim=1)
+    
+    # Sample from the probability distribution
+    sampled_idx = torch.multinomial(probabilities, 1)  # Sample one index from the probability distribution
+    return sampled_idx
+
+def generate_text(model, start_text, n, k, temperature=1.0):
+    """"""
+        model: The trained RNN model used for character prediction.
+        start_text: The initial string of length `n` provided by the user to start the generation.
+        n: The length of the initial input sequence.
+        k: The number of additional characters to generate.
+        temperature: Optional
+        A scaling factor for randomness in predictions. Higher values (e.g., >1) make 
+            predictions more random, while lower values (e.g., <1) make predictions more deterministic.
+            Default is 1.0.
+    """"""
+    start_text = start_text.lower()
+    #TODO: Implement the rest of the generate_text function
+    input_indices = []",Code Generation,Yes,,verified
+P047,91ab25a0-f051-70ce-9d29-ac0649a68c53,1ef06ca5-16f9-40f5-a135-89c920118830,"# Use sklearn to train a model on the training set
+reg = LinearRegression().fit(X_train, y_train)
+# Create a sample datapoint and predict the output of that sample with the trained model
+sample_row = features.iloc[2]
+sample = [sample_row.values]
+print(reg.predict(sample))
+# Report on the score for that model, in your own words (markdown, not code) explain what the score means
+print(reg.score(X_train, y_train)) Did I do this correct?",Code Explanation / Review,No,,verified
+P048,217b8540-6011-7086-a648-de542f534c22,c7b904af-2f22-48d0-8488-eaa64cc9f922,can we make this 300 words ish and keep the same language and style still be direct and fluffless,Problem Solving,Yes,,verified
+P049,116b0520-f0b1-70d5-0575-61162dd862fd,d1fd4f1f-b040-437f-986c-da82a391a68e,"## Evaluating the Model
+
+After training, we evaluate the model on the test data. # This is Cell #15
+
+with torch.no_grad():
+    #TODO: Write the testing loop for your trained model by refering to the training loop code given to you above
+
+
+    print(f""Test Loss: {avg_loss:.4f}, Test Accuracy: {accuracy:.2f}%"")",Code Generation,No,,verified
+P050,41cb85f0-d081-708c-e151-e2b062eb0f1d,12706adf-eded-48f8-85ea-a409b7839c52,it still doesn't work...,Debugging,Yes,,verified
+P051,c17b5520-f0b1-70c8-8bf1-0f5bd26a0cad,8db98d75-260f-47c1-87eb-b7071ae638e0,"are these fun ctions correct? def create_frequency_tables(document, n):
+    """"""
+    This function constructs a list of `n` frequency tables for an n-gram model, each table capturing character frequencies with increasing conditional dependencies.
+
+    - **Parameters**:
+        - `document`: The text document used to train the model.
+        - `n`: The number of value of `n` for the n-gram model.
+
+    - **Returns**:
+        - Returns a list of n frequency tables.
+    """"""
+ 
+
+    vocabulary = sorted(set(document))
+    frequency_tables = []
+
+    for k in range(1, n + 1):
+        # Start with every possible n-gram initialized to 0
+        table = {ngram: 0 for ngram in product(vocabulary, repeat=k)}
+
+        # Slide through the document and count actual n-grams
+        for i in range(len(document) - k + 1):
+            ngram = tuple(document[i:i+k])
+            table[ngram] += 1
+
+        frequency_tables.append(table)
+
+    return frequency_tables
+    
+
+
+
+with open('warandpeace.txt', 'r', encoding='utf-8') as file:
+    document = file.read()
+
+# print(create_frequency_tables(""abcd"", 3))
+
+def calculate_probability(sequence, char, tables):
+    """"""
+    Calculates the probability of observing a given sequence of characters using the frequency tables.
+
+    - **Parameters**:
+        - `sequence`: The sequence of characters whose probability we want to compute.
+        - `tables`: The list of frequency tables created by `create_frequency_tables()`, this will be of size `n`.
+        - `char`: The character whose probability of occurrence after the sequence is to be calculated.
+
+    - **Returns**:
+        - Returns a probability value for the sequence.
+    """"""
+    n = len(tables)
+    context_length = len(sequence)
+
+    # We can only compute this if the context fits within our n-gram model
+    if context_length > n - 1:
+        raise ValueError(f""Context length {context_length} exceeds the model order {n - 1}"")
+
+    # Get the appropriate frequency table for this n-gram
+    # We're looking at (context + char) as the full n-gram
+    full_ngram = tuple(sequence[-(n - 1):] + char)
+    context_ngram = tuple(sequence[-(n - 1):])
+
+    full_table = tables[len(full_ngram) - 1]   # k-gram table (k = len(full_ngram))
+    context_table = tables[len(context_ngram) - 1] if context_ngram else None
+
+    numerator = full_table.get(full_ngram, 0)
+    denominator = context_table.get(context_ngram, 0) if context_ngram else sum(tables[0].values())
+
+    if denominator == 0:
+        return 0.0
+
+    return numerator / denominator",Code Explanation / Review,No,,verified
+P052,d16ba510-9071-703c-6c73-2f57834ea988,3f960131-0c1e-4676-9484-153be31fec13,isn't b there 4 times instead of 2?,Problem Solving,Yes,,verified
+P053,71fb0550-10e1-7086-a384-f22bf12dee89,006b74d1-d88c-43ce-8e22-e27ac270a79d,initialize an optimizer,Code Generation,Yes,,verified
+P054,016b65a0-90b1-703c-a8e3-caf440f1860a,2aebe836-5a18-4c98-bc24-360e9223e737,"Table 1 (n(i_1 | i_0, ..., i_1)):
+  P(a | ) = 11
+  P(b | ) = 4
+  P(c | ) = 6
+Table 2 (n(i_2 | i_1, ..., i_1)):
+  P(a | a) = 5
+  P(a | b) = 2
+  P(a | c) = 3
+  P(b | a) = 3
+  P(b | c) = 1
+  P(c | b) = 2
+  P(c | a) = 3
+  P(c | c) = 1
+Table 3 (n(i_3 | i_2, ..., i_1)):
+  P(b | aa) = 2
+  P(b | ba) = 1
+  P(b | ac) = 1
+  P(a | ab) = 1
+  P(a | bc) = 2
+  P(a | cc) = 1
+  P(a | ca) = 2
+  P(a | aa) = 1
+  P(a | cb) = 1
+  P(a | ba) = 1
+  P(c | ab) = 2
+  P(c | ca) = 1
+  P(c | ac) = 1
+  P(c | aa) = 2
+
+
+Can you fill in these tables in the same format:
+### Compute Probability Tables
+
+**Note:** _Probability tables_ are different from _frequency_ tables**
+
+- Assume that your training document is (for simplicity) `""aababcaccaaacbaabcaa""`, and the sequence given to you is `""aa""`. Given n = 3, do the following:
+1. ***What is your vocabulary in this case***
+   - a, b, c
+2. ***Write down your probabillity table 1***:
+   - as in $P(a), P(b), \dots$
+   - For table 1, as in your probability table should look like this:
+
+        | $P(\odot)$ | Probability value |  
+        | ------ | ----------------- |
+        | $P(a)$ | $\frac{11}{21}$ |
+        | $P(b)$ | $\frac{4}{21}$ |
+        | $P(c)$ | $\frac{6}{21}$ |
+ 
+1. ***Write down your probability table 2***:
+   - as in your probability table should look like (wait a second, you should know what I'm talking about)
+
+        | $P(\odot)$ | Probability value |  
+        | ------ | ----------------- |
+        | $P(a \mid a)$ | $??$ |
+        | $\dots$ | $\dots$ |
+
+2. ***Write down your probability table 3***:
+   - You got this!
+
+
+Return me the new markdown",Data Processing,No,,verified
+P055,a1eba540-c0b1-7047-0613-98a1815ad2ae,52daf9f2-b5bd-469c-8127-73812abe6fb8,what is k,Concept Explanation,Yes,,verified
+P056,a10bd580-0091-709a-49e7-6e9c96ea58c6,115422a6-4311-4d7e-8213-63636b816855,"Model score: 0.8606369652963943
+Prediction [664984.89630433]
+Linear Regression Equation:
+h(x) = -409391.4796 + 866.1464 * Temperature °C + 1032.6951 * Mols KCL",Data Processing,Yes,,verified
+P057,f11bd590-d0f1-70a8-f80a-d8522e3d0cd6,faf63d11-00fc-4a7f-96c3-ec0d693a76c4,"print(""UCS Suggestions:"", autocomplete_engine.suggest_ucs(prefix))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/Users/<redacted>/Desktop/383/assignment-2-search-complete-<redacted>/autocomplete.py"", line 103, in suggest_ucs
+    heapq.heappush(pq, (cost + 1, child_node, curr_prefix + char))
+TypeError: '<' not supported between instances of 'Node' and 'Node",Debugging,No,,verified
+P058,b1bbe550-6071-708d-a4b6-8d280dff01d0,cb64dde5-87bc-4ebe-b152-fbb8b6f69b45,"   add path cost so that it's the inverse frequencies of that letter/char following that prefix of characters into this code  def build_tree(self, document):
+        for word in document.split():
+            node = self.root
+            for char in word:
+                lowercase = char.lower()
+                # check if letter is already stored in tree
+                if(lowercase not in node.children): 
+                # if not, then add this new character
+                    node.children[lowercase] = Node()
+                # update path cost
+                node.children[lowercase].path_cost += 1
+                # increment node to look at its next possible letters 
+                node = node.children[lowercase]
+            # end of word signal 
+            node.end = True ",Code Generation,No,,verified
+P059,e1ebc590-7061-70e7-0b53-19e34682613b,822c5556-1fcb-4d4d-8ffb-449de3c21bae,How do I do a kNN in sklearn,Code Generation,No,,verified
+P060,d1fb5550-1001-7057-b8f9-d17759791a6b,15714bd4-fd70-47d8-aa8f-5ea94d38df74,how can we write an equation for logistic regression with coefficients and intercept ,Problem Solving,Yes,,verified
+P061,618b3510-8031-705d-7448-12d2783e3064,89e85a01-7d0c-41cc-8085-922e88d22a05,continue,Other / Unclear,Yes,,verified
+P062,d1cb95b0-3071-70d0-f547-ba55b3123783,d8c707f3-e1bf-4de6-907d-e207d8f2d435,"convert this SQL query to a pandas query.
+
+**SQL Query**
+```sql
+SELECT Target, COUNT(*) AS count
+FROM your_table_name
+GROUP BY Target;
+```",Code Generation,No,,verified
+P063,81bb0570-e0e1-70e9-3e09-b26d835387b4,1a63a0d2-db0c-4aa1-8791-ba1f022247fc,which lines did you change?,Code Explanation / Review,Yes,,verified
+P064,218ba540-4081-70eb-5d75-b3fa54f82268,ce28954d-c2a5-42b5-af92-b029bd0818d1,"UserWarning: X does not have valid feature names, but LogisticRegression was fitted with feature names",Debugging,Yes,,verified
+P065,01ebb520-b0d1-709a-ca45-bb5b571f108f,39053feb-92b4-4eed-9d8f-6afa7914e9cc,"what is b had shape(2), then wouldn't that mean when broadcasting, we expand to shape(1,2)",Concept Explanation,No,,verified
+P066,21bb9560-e091-7093-48ce-07076388c6c5,93fb3540-d066-4b3b-9900-0a727f54512b,"I have the following data from a csv file:
+
+al,su,age,bp,bgr,bu,sc,sod,pot,hemo,pcv,wbcc,rbcc,rbc_normal,pc_normal,pcc_present,ba_present,htn_yes,dm_yes,cad_yes,appet_poor,pe_yes,ane_yes,Target_notckd
+2.0,0.0,0.7432432432432432,0.5,0.44206008583690987,0.9019607843137255,0.4320987654320988,0.5,0.7931034482758622,0.0,0.03225806451612903,0.3951612903225806,0.0571428571428572,False,False,False,False,True,True,True,True,True,True,False
+2.0,0.0,0.6756756756756757,0.75,0.2532188841201717,0.6339869281045751,0.7777777777777778,0.36666666666666664,0.6551724137931034,0.13861386138613854,0.1935483870967742,0.1693548387096774,0.11428571428571425,False,False,False,False,True,False,False,False,False,False,False
+3.0,4.0,0.8513513513513513,0.25,0.8326180257510729,0.5032679738562091,0.28395061728395066,0.3333333333333333,0.37931034482758624,0.47524752475247517,0.45161290322580644,0.4274193548387097,0.31428571428571417,True,False,False,False,True,True,True,False,True,False,False
+3.0,0.0,0.7567567567567568,0.25,0.22317596566523606,0.20915032679738563,0.16049382716049382,0.5333333333333333,0.6206896551724139,0.485148514851485,0.5161290322580645,0.2903225806451613,0.2571428571428571,True,False,False,False,True,True,False,False,False,False,False
+4.0,0.0,0.0,0.0,0.10300429184549356,0.37254901960784315,0.07407407407407407,0.5,0.6896551724137933,0.21782178217821782,0.22580645161290322,1.0,0.5142857142857142,False,False,False,True,False,False,False,True,False,False,False
+3.0,1.0,0.6621621621621622,0.5,0.6180257510729614,0.4117647058823529,0.4320987654320988,0.5666666666666667,0.6896551724137933,0.3168316831683168,0.3548387096774194,0.25,0.20000000000000004,True,False,True,True,True,True,False,False,True,False,False
+1.0,0.0,0.5405405405405406,0.0,0.39914163090128757,0.5359477124183006,0.35802469135802467,0.7,0.37931034482758624,0.20792079207920794,0.16129032258064516,0.8306451612903226,0.0571428571428572,True,True,False,False,True,True,False,False,False,False,False
+4.0,2.0,0.7837837837837838,1.0,0.39914163090128757,0.2875816993464052,0.8395061728395062,0.6666666666666666,0.5862068965517241,0.019801980198019816,0.0967741935483871,0.25806451612903225,0.11428571428571425,False,False,False,True,True,True,False,False,True,False,False
+4.0,0.0,0.5675675675675675,0.5,0.1072961373390558,1.0,0.9012345679012346,0.5333333333333333,0.31034482758620685,0.20792079207920794,0.2903225806451613,0.20967741935483872,0.11428571428571425,True,False,False,False,True,False,False,False,False,True,False
+4.0,3.0,0.8513513513513513,0.25,0.6180257510729614,0.5620915032679739,0.7283950617283951,0.0,0.3448275862068966,0.1683168316831683,0.16129032258064516,0.5806451612903226,0.08571428571428566,True,False,True,True,True,True,True,False,True,True,False
+3.0,2.0,0.9054054054054054,1.0,0.9656652360515021,0.5228758169934641,0.6419753086419753,0.6666666666666666,0.0,0.1485148514851484,0.22580645161290322,0.21774193548387097,0.0571428571428572,False,False,True,False,True,True,True,True,False,False,False
+4.0,0.0,0.20270270270270271,0.75,0.15879828326180256,0.19607843137254902,0.16049382716049382,0.16666666666666666,0.20689655172413796,0.05940594059405945,0.0,0.6532258064516129,0.2571428571428571,True,False,True,True,False,False,False,False,False,True,False
+4.0,1.0,0.7837837837837838,0.0,0.7253218884120172,0.3137254901960784,0.4814814814814815,0.5666666666666667,0.8620689655172415,0.17821782178217818,0.1935483870967742,0.25806451612903225,0.11428571428571425,False,False,False,True,True,True,False,True,True,False,False
+4.0,1.0,0.6756756756756757,0.25,0.6008583690987125,0.10457516339869281,0.16049382716049382,0.5333333333333333,0.31034482758620685,0.8316831683168318,0.9354838709677419,0.6612903225806451,0.7428571428571428,False,True,False,False,False,False,False,False,False,False,False
+
+
+Please convert this data into a markdown table format.",Data Processing,No,,verified
+P067,a15b55c0-6081-70cd-a61b-afbdaf0eff13,dbcaff9c-61e2-4810-9d0b-123080653e11,"# iii. Report on the score for the Neural Network, what does the score measure?",Problem Solving,Yes,,verified
+P068,311bb5b0-8031-704a-d26b-1a35da2044f9,1b8fe070-923c-4270-a79e-39f0fb48d73f,get every n-gram from a text file,Code Generation,No,,verified
+P069,619bf560-4021-7015-9155-f148328587b8,4d94cde4-053b-4753-952e-9844b21c24cf,"def sample_from_output(logits, temperature=1.0):
+    """"""
+    Sample from the logits with temperature scaling.
+    logits: Tensor of shape [batch_size, vocab_size] (raw scores, before softmax)
+    temperature: a float controlling the randomness (higher = more random)
+    """"""
+    # Apply temperature scaling to logits (increase randomness with higher values)
+    scaled_logits = logits / temperature  # Scale the logits by temperature
+    # Apply softmax to convert logits to probabilities
+    probabilities = F.softmax(scaled_logits, dim=1)
+    
+    # Sample from the probability distribution
+    sampled_idx = torch.multinomial(probabilities, 1)  # Sample one index from the probability distribution
+    return sampled_idx
+
+def generate_text(model, start_text, n, k, temperature=1.0):
+    """"""
+        model: The trained RNN model used for character prediction.
+        start_text: The initial string of length `n` provided by the user to start the generation.
+        n: The length of the initial input sequence.
+        k: The number of additional characters to generate.
+        temperature: Optional
+        A scaling factor for randomness in predictions. Higher values (e.g., >1) make 
+            predictions more random, while lower values (e.g., <1) make predictions more deterministic.
+            Default is 1.0.
+    """"""
+    start_text = start_text.lower()
+    #TODO: Implement the rest of the generate_text function
+
+    start_text_data = [char_to_idx[c] for c in start_text]
+
+The last one converts the input sequence into the indices. I then want to use the model to generate the next k characters after the sequence and return the predicted characters in a variable called generated_text. I'm using a dictionary called idx_to_char to convert the character indices back into their corresponding characters.",Code Generation,Yes,,verified
+P070,c15ba5f0-4051-708c-e082-cb7682fd01b2,450381da-0fdd-4825-a965-55d84f1f014b,"Can you explain how to implement UCS in more details, what does it has to do with changing build_tree itself? ",Concept Explanation,No,,verified
+P071,b17b05e0-3031-7053-8f2e-c462e449a396,3b25ad40-bf3a-41c3-92e1-dff0eb2b1309,"From given dataset labels 
+age	Feature	Integer	Age		year	yes
+bp	Feature	Integer		blood pressure	mm/Hg	yes
+sg	Feature	Categorical		specific gravity		yes
+al	Feature	Categorical		albumin		yes
+su	Feature	Categorical		sugar		yes
+rbc	Feature	Binary		red blood cells		yes
+pc	Feature	Binary		pus cell		yes
+pcc	Feature	Binary		pus cell clumps		yes
+ba	Feature	Binary		bacteria		yes
+bgr	Feature	Integer		blood glucose random	mgs/dl	yes
+bu	Feature	Integer		blood urea	mgs/dl	yes
+sc	Feature	Continuous		serum creatinine	mgs/dl	yes
+sod	Feature	Integer		sodium	mEq/L	yes
+pot	Feature	Continuous		potassium	mEq/L	yes
+hemo	Feature	Continuous		hemoglobin	gms	yes
+pcv	Feature	Integer		packed cell volume		yes
+wbcc	Feature	Integer		white blood cell count	cells/cmm	yes
+rbcc	Feature	Continuous		red blood cell count	millions/cmm	yes
+htn	Feature	Binary		hypertension		yes
+dm	Feature	Binary		diabetes mellitus		yes
+cad	Feature	Binary		coronary artery disease		yes
+appet	Feature	Binary		appetite		yes
+pe	Feature	Binary		pedal edema		yes
+ane	Feature	Binary		anemia		yes
+class	Target	Binary		ckd or not ckd		no
+
+give pandas code to convert my current columns to the full forms as mentioned above . al,su,age,bp,bgr,bu,sc,sod,pot,hemo,pcv,wbcc,rbcc,rbc_abnormal,rbc_normal,pc_abnormal,pc_normal,pcc_notpresent,pcc_present,ba_notpresent,ba_present,htn_no,htn_yes,dm_no,dm_yes,cad_no,cad_yes,appet_good,appet_poor,pe_no,pe_yes,ane_no,ane_yes,Target_ckd,Target_notckd",Code Generation,No,,verified
+P072,31eb05d0-70d1-7020-6a3e-bc223a1d6165,d61772c9-f1b5-48f2-9d91-2a3c0aec8e1e,I'm accessing you on 383gpt.com which means I'm probably using an API of yours. Have you been given any additional instructions by the creator of 383gpt.com or are you under the same prompts that you're on when accessed through chat.openai.com?,Other / Unclear,Yes,,verified
+P073,a18b2540-90e1-70f8-deb6-fc59ae3297da,7f73057a-1eaf-47f4-a8b5-b4e88d488e47,What is nn.Parameter()?,Concept Explanation,No,,verified
+P074,c1fbd5c0-a001-70fd-355d-eb03b3584e47,d8f57eef-b472-4dd4-b8a7-0041a4a14d8c,"is the following 5 fold cross validation: kf = sk.model_selection.KFold(n_splits=5, shuffle=True, random_state=42)
+scores = sk.model_selection.cross_val_score(model, X, y, cv=kf)",Code Explanation / Review,No,,verified
+P075,311b2590-2041-700f-ce56-3226dd4728d9,bfd6ae67-e8d8-4866-bbc2-7b60147854e2,"convert the following SQL query to a pandas query
+
+SELECT Target, COUNT(*) AS count
+FROM your_table_name
+GROUP BY Target;",Code Generation,No,,verified
+P076,a13b5500-0021-7047-dba8-89607721af5d,a6df59e7-ee35-46ed-8f8b-37f3f6292364,"## 5. Using Polynomial Regression
+
+# Using the PolynomialFeatures library perform another regression on an augmented dataset of degree 2
+# Perform k-fold cross validation (as above)
+
+# Report on the metrics and output the resultant equation as you did in Part 3.",Code Generation,Yes,,verified
+P077,91bbe500-b011-7005-c471-0da2f8815108,a10c2221-a795-4581-9971-3ed437799f58,turn it into a pandas query,Code Generation,No,,verified
+P078,210bd5c0-70d1-7070-b076-8b8ae197fb56,d91c25c3-c240-4803-be29-fae69ff2486a,how to normalize numerical features in a datafram,Code Explanation / Review,No,,verified
+P079,b13be530-5051-70d1-0e6c-be1458ec7929,11ddf211-4dd5-46d6-a632-a16e2e92d08c,why did all models perform the same?,Concept Explanation,Yes,,verified
+P080,81fbd560-90f1-70a6-16ea-d6a5ac61b239,3042bb0f-f025-4d67-982b-0185eb9be86e,"incoherence
+
+What is this",Concept Explanation,No,,verified
+P081,91ab45a0-6011-7078-f1e9-b3a94075f7b7,0971aed1-3287-4fe9-b0aa-88684a037d4b,access first row of pytorch tensor,Code Generation,No,,verified
+P082,012b8580-9011-70e5-0aa0-480c3bb39caa,823275b5-6e3c-472c-87aa-8abfee3189ee,"# This is Cell #7
+
+#TODO: Set your model's hyperparameters
+
+sequence_length = 1000  # Length of each input sequence
+stride = 10            # Stride for creating sequences
+embedding_dim = 2     # Dimension of character embeddings
+hidden_size = 1      # Number of features in the hidden state of the RNN
+learning_rate = 200  # Learning rate for the optimizer
+num_epochs = 1         # Number of epochs to train
+batch_size = 64        # Batch size for training
+vocab_size = len(vocab)
+input_size = len(vocab)
+output_size = len(vocab)
+
+
+do any of these variables go into the data loader?",Concept Explanation,Yes,,verified
+P083,61bb4560-e0e1-70b5-d308-ad58511a0fc5,471950cc-914a-472b-98aa-867d93bf7660,"import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+from tqdm import tqdm
+from torch.utils.data import Dataset, DataLoader
+import re
+
+# ===================== Dataset =====================
+class CharDataset(Dataset):
+    def __init__(self, data, sequence_length, stride, vocab_size):
+        self.data = data
+        self.sequence_length = sequence_length
+        self.stride = stride
+        self.vocab_size = vocab_size
+        self.sequences = []
+        self.targets = []
+        
+        # Create overlapping sequences with stride
+        for i in range(0, len(data) - sequence_length, stride):
+            self.sequences.append(data[i:i + sequence_length])
+            self.targets.append(data[i + 1:i + sequence_length + 1])
+
+    def __len__(self):
+        return len(self.sequences)
+
+    def __getitem__(self, idx):
+        sequence = torch.tensor(self.sequences[idx], dtype=torch.long)
+        target = torch.tensor(self.targets[idx], dtype=torch.long)
+        return sequence, target
+
+# ===================== Model =====================
+class CharRNN(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size, embedding_dim=30):
+        super().__init__()
+        self.hidden_size = hidden_size
+        self.embedding = nn.Embedding(output_size, embedding_dim)
+        # TODO: Initialize your model parameters as needed e.g. W_e, W_h, etc.
+
+
+    def forward(self, x, hidden):
+        """"""
+        x in [b, l] # b is batch_size and l is sequence length
+        """"""
+        x_embed = self.embedding(x)  # [b=batch_size, l=sequence_length, e=embedding_dim]
+        b, l, _ = x_embed.size()
+        x_embed = x_embed.transpose(0, 1) # [l, b, e]
+        if hidden is None:
+            h_t_minus_1 = self.init_hidden(b)
+        else:
+            h_t_minus_1 = hidden
+        output = []
+        for t in range(l):
+            #  TODO: Implement forward pass for a single RNN timestamp, append the hidden to the output 
+            pass
+        output = torch.stack(output) # [l, b, e]
+        output = output.transpose(0, 1) # [b, l, e]
+        
+        # TODO set these values after completing the loop above
+        final_hidden = None # [b, h] 
+        logits = None # [b, l, vocab_size=v] 
+        return logits, final_hidden
+    
+    def init_hidden(self, batch_size):
+        return torch.zeros(batch_size, self.hidden_size).to(device)
+
+# ===================== Training =====================
+device = 'cpu'
+print(f""Using device: {device}"")
+
+def read_file(filename):
+    with open(filename, ""r"", encoding=""utf-8"") as file:
+        text = file.read().lower()
+        text = re.sub(r'[^a-z.,!?;:()\[\] ]+', '', text)
+    return text
+
+# To debug your model you should start with a simple sequence an RNN should predict this perfectly
+sequence = ""abcdefghijklmnopqrstuvwxyz"" * 100
+# sequence = read_file(""warandpeace.txt"") # Uncomment to read from file
+vocab = sorted(set(sequence))
+char_to_idx = {} # TODO: Create a mapping from characters to indices
+idx_to_char = {} # TODO: Create the reverse mapping
+data = [char_to_idx[char] for char in sequence]
+
+# TODO Understand and adjust the hyperparameters once the code is running
+sequence_length = 1000 # Length of each input sequence
+stride = 10            # Stride for creating sequences
+embedding_dim = 2      # Dimension of character embeddings
+hidden_size = 1        # Number of features in the hidden state of the RNN
+learning_rate = 200    # Learning rate for the optimizer
+num_epochs = 1         # Number of epochs to train
+batch_size = 64        # Batch size for training
+vocab_size = len(vocab)
+input_size = len(vocab)
+output_size = len(vocab)
+
+model = CharRNN(input_size, hidden_size, output_size).to(device)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+data_tensor = torch.tensor(data, dtype=torch.long)
+train_size = int(len(data_tensor) * 0.9)
+#TODO: Split the data into 90:10 ratio with PyTorch indexing
+train_data = None
+test_data = None 
+
+train_dataset = CharDataset(train_data, sequence_length, stride, output_size)
+train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
+
+# Training loop
+for epoch in range(num_epochs):
+    total_loss = 0
+    hidden = None
+    for batch_inputs, batch_targets in tqdm(train_loader, desc=f""Epoch {epoch+1}/{num_epochs}""):
+        batch_inputs, batch_targets = batch_inputs.to(device), batch_targets.to(device)
+
+        output, hidden = model(batch_inputs, hidden)
+        # Detach removes the hidden state from the computational graph.
+        # This is prevents backpropagating through the full history, and
+        # is important for stability in training RNNs
+        hidden = hidden.detach()
+
+        # TODO compute the loss, backpropagate gradients, and update total_loss
+
+
+    print(f""Epoch {epoch+1}, Loss: {total_loss/len(train_loader):.4f}"")
+
+# Test the model
+# TODO: Implement a test loop to evaluate the model on the test set
+
+# ===================== Text Generation =====================
+def sample_from_output(logits, temperature=1.0):
+    """"""
+    Sample from the logits with temperature scaling.
+    logits: Tensor of shape [batch_size, vocab_size] (raw scores, before softmax)
+    temperature: a float controlling the randomness (higher = more random)
+    """"""
+    if temperature <= 0:
+        temperature = 0.00000001
+    # Apply temperature scaling to logits (increase randomness with higher values)
+    scaled_logits = logits / temperature 
+    # Apply softmax to convert logits to probabilities
+    probabilities = F.softmax(scaled_logits, dim=1)
+    
+    # Sample from the probability distribution
+    sampled_idx = torch.multinomial(probabilities, 1)
+    return sampled_idx
+
+def generate_text(model, start_text, n, k, temperature=1.0):
+    """"""
+        model: The trained RNN model used for character prediction.
+        start_text: The initial string of length `n` provided by the user to start the generation.
+        n: The length of the initial input sequence.
+        k: The number of additional characters to generate.
+        temperature: Optional
+        A scaling factor for randomness in predictions. Higher values (e.g., >1) make 
+            predictions more random, while lower values (e.g., <1) make predictions more deterministic.
+            Default is 1.0.
+    """"""
+    start_text = start_text.lower()
+    #TODO: Implement the rest of the generate_text function
+    # Hint: you will call sample_from_output() to sample a character from the logits
+
+    return ""TODO""
+
+print(""Training complete. Now you can generate text."")
+while True:
+    start_text = input(""Enter the initial text (n characters, or 'exit' to quit): "")
+    
+    if start_text.lower() == 'exit':
+        print(""Exiting..."")
+        break
+    
+    n = len(start_text) 
+    k = int(input(""Enter the number of characters to generate: ""))
+    temperature_input = input(""Enter the temperature value (1.0 is default, >1 is more random): "")
+    temperature = float(temperature_input) if temperature_input else 1.0
+    
+    completed_text = generate_text(model, start_text, n, k, temperature)
+    
+    print(f""Generated text: {completed_text}"")",Code Explanation / Review,Yes,,verified
+P084,313b9520-e021-70f9-4924-88d88686726c,c23358e0-3ad8-4c0e-850b-c7a0af344e38,what does the suggest_random do in the Autocomplete class,Code Explanation / Review,No,,verified
+P085,91fb2530-b051-70f2-9bbb-1733c381bfbc,6010f2bd-0d85-4730-935a-4f09e80b77d2,"import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+from tqdm import tqdm
+from torch.utils.data import Dataset, DataLoader
+import re
+
+# ===================== Dataset =====================
+class CharDataset(Dataset):
+    def __init__(self, data, sequence_length, stride, vocab_size):
+        self.data = data
+        self.sequence_length = sequence_length
+        self.stride = stride
+        self.vocab_size = vocab_size
+        self.sequences = []
+        self.targets = []
+        
+        # Create overlapping sequences with stride
+        for i in range(0, len(data) - sequence_length, stride):
+            self.sequences.append(data[i:i + sequence_length])
+            self.targets.append(data[i + 1:i + sequence_length + 1])
+
+    def __len__(self):
+        return len(self.sequences)
+
+    def __getitem__(self, idx):
+        sequence = torch.tensor(self.sequences[idx], dtype=torch.long)
+        target = torch.tensor(self.targets[idx], dtype=torch.long)
+        return sequence, target
+
+# ===================== Model =====================
+class CharRNN(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size, embedding_dim=30):
+        super().__init__()
+        self.hidden_size = hidden_size
+        self.embedding = nn.Embedding(output_size, embedding_dim)
+        # TODO: Initialize your model parameters as needed e.g. W_e, W_h, etc.
+
+
+    def forward(self, x, hidden):
+        """"""
+        x in [b, l] # b is batch_size and l is sequence length
+        """"""
+        x_embed = self.embedding(x)  # [b=batch_size, l=sequence_length, e=embedding_dim]
+        b, l, _ = x_embed.size()
+        x_embed = x_embed.transpose(0, 1) # [l, b, e]
+        if hidden is None:
+            h_t_minus_1 = self.init_hidden(b)
+        else:
+            h_t_minus_1 = hidden
+        output = []
+        for t in range(l):
+            #  TODO: Implement forward pass for a single RNN timestamp, append the hidden to the output 
+            pass
+        output = torch.stack(output) # [l, b, e]
+        output = output.transpose(0, 1) # [b, l, e]
+        
+        # TODO set these values after completing the loop above
+        final_hidden = None # [b, h] 
+        logits = None # [b, l, vocab_size=v] 
+        return logits, final_hidden
+    
+    def init_hidden(self, batch_size):
+        return torch.zeros(batch_size, self.hidden_size).to(device)
+
+# ===================== Training =====================
+device = 'cpu'
+print(f""Using device: {device}"")
+
+def read_file(filename):
+    with open(filename, ""r"", encoding=""utf-8"") as file:
+        text = file.read().lower()
+        text = re.sub(r'[^a-z.,!?;:()\[\] ]+', '', text)
+    return text
+
+# To debug your model you should start with a simple sequence an RNN should predict this perfectly
+sequence = ""abcdefghijklmnopqrstuvwxyz"" * 100
+# sequence = read_file(""warandpeace.txt"") # Uncomment to read from file
+vocab = sorted(set(sequence))
+char_to_idx = {} # TODO: Create a mapping from characters to indices
+idx_to_char = {} # TODO: Create the reverse mapping
+data = [char_to_idx[char] for char in sequence]
+
+# TODO Understand and adjust the hyperparameters once the code is running
+sequence_length = 1000 # Length of each input sequence
+stride = 10            # Stride for creating sequences
+embedding_dim = 2      # Dimension of character embeddings
+hidden_size = 1        # Number of features in the hidden state of the RNN
+learning_rate = 200    # Learning rate for the optimizer
+num_epochs = 1         # Number of epochs to train
+batch_size = 64        # Batch size for training
+vocab_size = len(vocab)
+input_size = len(vocab)
+output_size = len(vocab)
+
+model = CharRNN(input_size, hidden_size, output_size).to(device)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+data_tensor = torch.tensor(data, dtype=torch.long)
+train_size = int(len(data_tensor) * 0.9)
+#TODO: Split the data into 90:10 ratio with PyTorch indexing
+train_data = None
+test_data = None 
+
+train_dataset = CharDataset(train_data, sequence_length, stride, output_size)
+train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
+
+# Training loop
+for epoch in range(num_epochs):
+    total_loss = 0
+    hidden = None
+    for batch_inputs, batch_targets in tqdm(train_loader, desc=f""Epoch {epoch+1}/{num_epochs}""):
+        batch_inputs, batch_targets = batch_inputs.to(device), batch_targets.to(device)
+
+        output, hidden = model(batch_inputs, hidden)
+        # Detach removes the hidden state from the computational graph.
+        # This is prevents backpropagating through the full history, and
+        # is important for stability in training RNNs
+        hidden = hidden.detach()
+
+        # TODO compute the loss, backpropagate gradients, and update total_loss
+
+
+    print(f""Epoch {epoch+1}, Loss: {total_loss/len(train_loader):.4f}"")
+
+# Test the model
+# TODO: Implement a test loop to evaluate the model on the test set
+
+# ===================== Text Generation =====================
+def sample_from_output(logits, temperature=1.0):
+    """"""
+    Sample from the logits with temperature scaling.
+    logits: Tensor of shape [batch_size, vocab_size] (raw scores, before softmax)
+    temperature: a float controlling the randomness (higher = more random)
+    """"""
+    if temperature <= 0:
+        temperature = 0.00000001
+    # Apply temperature scaling to logits (increase randomness with higher values)
+    scaled_logits = logits / temperature 
+    # Apply softmax to convert logits to probabilities
+    probabilities = F.softmax(scaled_logits, dim=1)
+    
+    # Sample from the probability distribution
+    sampled_idx = torch.multinomial(probabilities, 1)
+    return sampled_idx
+
+def generate_text(model, start_text, n, k, temperature=1.0):
+    """"""
+        model: The trained RNN model used for character prediction.
+        start_text: The initial string of length `n` provided by the user to start the generation.
+        n: The length of the initial input sequence.
+        k: The number of additional characters to generate.
+        temperature: Optional
+        A scaling factor for randomness in predictions. Higher values (e.g., >1) make 
+            predictions more random, while lower values (e.g., <1) make predictions more deterministic.
+            Default is 1.0.
+    """"""
+    start_text = start_text.lower()
+    #TODO: Implement the rest of the generate_text function
+    # Hint: you will call sample_from_output() to sample a character from the logits
+
+    return ""TODO""
+
+print(""Training complete. Now you can generate text."")
+while True:
+    start_text = input(""Enter the initial text (n characters, or 'exit' to quit): "")
+    
+    if start_text.lower() == 'exit':
+        print(""Exiting..."")
+        break
+    
+    n = len(start_text) 
+    k = int(input(""Enter the number of characters to generate: ""))
+    temperature_input = input(""Enter the temperature value (1.0 is default, >1 is more random): "")
+    temperature = float(temperature_input) if temperature_input else 1.0
+    
+    completed_text = generate_text(model, start_text, n, k, temperature)
+    
+    print(f""Generated text: {completed_text}"")",Code Explanation / Review,Yes,,verified
+P086,b1cb6570-80d1-70d6-b914-60bf3a31e5c7,b5bddbc8-330f-4fab-b7da-c7317e670bfa,"can you give me pandas script to apply this renaming to all the columns of your dataset? my dataset is called mergedata. the data provided below is the abbreviation to name mapping
+
+
+Variable Name	Role	Type	Demographic	Description	Units	Missing Values
+age	Feature	Integer	Age		year	yes
+bp	Feature	Integer		blood pressure	mm/Hg	yes
+sg	Feature	Categorical		specific gravity		yes
+al	Feature	Categorical		albumin		yes
+su	Feature	Categorical		sugar		yes
+rbc	Feature	Binary		red blood cells		yes
+pc	Feature	Binary		pus cell		yes
+pcc	Feature	Binary		pus cell clumps		yes
+ba	Feature	Binary		bacteria		yes
+bgr	Feature	Integer		blood glucose random	mgs/dl	yes
+bu	Feature	Integer		blood urea	mgs/dl	yes
+sc	Feature	Continuous		serum creatinine	mgs/dl	yes
+sod	Feature	Integer		sodium	mEq/L	yes
+pot	Feature	Continuous		potassium	mEq/L	yes
+hemo	Feature	Continuous		hemoglobin	gms	yes
+pcv	Feature	Integer		packed cell volume		yes
+wbcc	Feature	Integer		white blood cell count	cells/cmm	yes
+rbcc	Feature	Continuous		red blood cell count	millions/cmm	yes
+htn	Feature	Binary		hypertension		yes
+dm	Feature	Binary		diabetes mellitus		yes
+cad	Feature	Binary		coronary artery disease		yes
+appet	Feature	Binary		appetite		yes
+pe	Feature	Binary		pedal edema		yes
+ane	Feature	Binary		anemia		yes
+class	Target	Binary		ckd or not ckd		no",Data Processing,No,,verified
+P087,71ab5570-8001-709a-1343-b36f475fb202,9c5d047c-e950-4f4b-a744-cfc679af64e9,"Epoch 1/20: 0it [00:00, ?it/s]
+---------------------------------------------------------------------------
+ZeroDivisionError                         Traceback (most recent call last)
+Cell In[56], line 30
+     26         total_predictions += batch_targets.size(0) * batch_targets.size(1)  # Count total predictions
+     28     total_loss += loss.item()  # Accumulate loss
+---> 30 avg_loss = total_loss / len(train_loader)  # Average loss for the epoch
+     31 accuracy = correct_predictions / total_predictions * 100  # Calculate accuracy percentage
+     32 print(f""Epoch [{epoch+1}/{num_epochs}], Loss: {avg_loss:.4f}, Accuracy: {accuracy:.2f}%"")
+
+ZeroDivisionError: division by zero
+
+
+Now everything else worked but I have this error. These are my hyperparameters:
+sequence_length = 50  # Length of each input sequence; reduce to allow faster training
+stride = 1            # Stride for creating sequences
+embedding_dim = 40     # Dimension of character embeddings
+hidden_size = 100      # Number of features in the hidden state of the RNN
+num_layers = 1         # Number of layers in the RNN
+learning_rate = 0.01  # Learning rate for the optimizer; decreased from 200 for stability
+num_epochs = 20         # Number of epochs to train; increased for better learning
+batch_size = 64        # Batch size for training
+vocab_size = len(vocab) # Size of the vocabulary
+input_size = vocab_size # Same as vocab size since input size is based on characters
+output_size = vocab_size # Same as vocab size since output is also character predictions",Debugging,No,,verified
+P088,b14ba500-e041-701b-eba7-204e26a8a5b7,d4a5ddb3-82b8-45b9-97cf-30bcfa8192c4,"remove rows which are more than 3 standard deviations away from mean of pandas dataframe column
+",Data Processing,No,,verified
+P089,21db15f0-b041-70c8-aec0-cd297c0b55ac,83df70eb-cb36-40e9-979f-bec6eb90c7c2,"how can i fix this error? ValueError                                Traceback (most recent call last)
+Cell In[14], line 8
+      5 hidden = model.init_hidden(batch_size)
+      7 # print(train_loader)
+----> 8 for batch_idx, (batch_inputs, batch_targets) in tqdm(enumerate(train_loader), total=total_batches, desc=f""Epoch {epoch+1}/{num_epochs}""):
+      9     batch_inputs, batch_targets = batch_inputs.to(device), batch_targets.to(device)
+     11     output, hidden = model(batch_inputs, hidden)
+
+ValueError: too many values to unpack (expected 2)",Debugging,No,,verified
+P090,919b25a0-0071-7022-b6bb-2716eefd7953,0b682c64-63df-4d7b-825d-01faa14d1cfb,how would i now print the data that i just imported,Code Explanation / Review,Yes,,verified
+P091,41eb6500-1081-7006-138f-298c1f0f89f5,2ae3a6de-b93c-4228-b19d-bd1dd32f9010,"Coefficients --> [ 0.00000000e+00  1.20000001e+01 -1.26631375e-07 -8.22194625e-11
+  2.00000000e+00  2.85714287e-02]
+Intercept --> 8.10413621366024e-06
+
+
+Write me a Markdown Latex polynomial model equation using these coefficients",Problem Solving,Yes,,verified
+P092,11cb0520-80d1-70f1-831e-2d3d54b32de3,237c3f19-356a-4570-9851-e4e4982cabbf,is there a way to use drop_duplicates in place,Code Explanation / Review,No,,verified
+P093,b1abe580-4091-7066-5da1-2ce6aa6d0e3b,dc489ef4-7ab6-46c4-bba1-8dd02518fa9b,"when I use the suggest_dfs, if I type in throough it gives me a suggestion like throoughugh",Debugging,No,,verified
+P094,f14be5c0-d081-70bb-548b-5d9ea05cc289,c736a3e0-0c52-46e5-b04d-7c47064d5cdb,"Can you provide code that will run each of the experiments described above using the titanic dataset:
+
+class TitanicDataset(Dataset):
+    def __init__(self, X, y):
+        # TODO: initialize X, y as tensors
+        self.X = torch.from_numpy(X.values.astype(np.float32))
+        self.y = torch.from_numpy(y.values.astype(np.int64))
+
+    def __len__(self):
+        return len(self.X)
+
+    def __getitem__(self, index):
+        return self.X[index], self.y[index]
+
+# TODO: Instantiate the dataset classes
+train_dataset = TitanicDataset(X_train, y_train)
+test_dataset = TitanicDataset(X_test, y_test)
+
+# TODO: Create Dataloaders using the datasets
+train_loader = DataLoader(dataset=train_dataset, batch_size=16, shuffle=True)
+test_loader = DataLoader(dataset=test_dataset, batch_size=16, shuffle=False)",Code Generation,Yes,,verified
+P095,219b2590-e041-704c-6a88-f3a3366c6cc5,86930bb7-3a64-43f1-8612-85f27a7cffca,"def build_tree(self, document):
+        for word in document.split():
+            node = self.root
+            
+            for char in word:
+                #TODO for students
+                if (char not in node.children): #check if character not in tree level already (not a letter in a preexisting word)
+                    node.children[char] = Node()
+                node = node.children[char] #continue through till the word is finished
+            
+            node.is_word = True
+
+this correct?",Code Explanation / Review,No,,verified
+P096,01eb9580-3071-70a9-01aa-f63e5dd14609,857f612f-c7e4-41dc-98fe-64e5a503ef09,"# Use the cross_val_score function to repeat your experiment across many shuffles of the data
+# For grading consistency use n_splits=5 and random_state=42
+import numpy as np
+from sklearn.model_selection import cross_val_score, KFold
+from sklearn.ensemble import RandomForestClassifier
+
+model = RandomForestClassifier()
+
+# Set up cross-validation with 5 splits and random_state for reproducibility
+cv = KFold(n_splits=5, shuffle=True, random_state=42)
+
+# Calculate cross-validated scores
+scores = cross_val_score(model, X, y, cv=cv)
+
+print(scores)
+print(np.mean(scores))
+# Report on their finding and their significance // this code is producing only 0.0's for output",Debugging,No,,verified
+P097,f17ba530-1081-709f-a59d-3f05cc7fb431,e37e33c5-13b4-4afa-beaf-3bbeb4ada45e,"here is some context: Finish the training loop, test loop, and set the hyperparameters
+Now that you've finished the model you have the forward pass established, finish the backward pass of the model using the PyTorch formula from Assignment 5 and create a test loop following a similar structure (don't forget to stop computing gradients in the test loop!).
+
+Once that's done the code should start training when you run the file. However, it will not train successfully. In order to train the model properly you will need to update the training hyperparameters. If everything is set up properly at this point you should see a model that learns to predict the alphabet with very high accuracy 98+% and very low loss (near 0).
+
+Hyperparmeter Tuning Tips
+Start with reasonable model parameters
+The first thing you should do is set reasonable starting hyperparams for the model itself. This will come to understanding what each hyperparams does by understanding the architecture and the objective you're training your model to complete. Set these and keep them fixed while you tune the training hyperparameters. As long as these are close enough the model will learn. They can be further refined once you have your training is starting to learn something.
+
+Refine learning rate
+When it comes to learning hyperparameters, the most important is learning rate. Others often are just optimizations to learn faster or maximize the output of your hardware. It's useful to imagine your loss space as a large flat desert. The loss space for neural networks is often very 'flat' with small 'divots' that are optimal regions. You want a learning rate that is small enough to be able to find these divots without jumping over them. Further you also want them to be small enough to reach the bottom of the divot (although optimizers these days often change your learning rate dynamically to accomplish this). I'd recommend starting with as small a learning rate as possible, if it's too small you're not traversing the space fast enough (never finding a divot, or only moving slightly into it). If this is the case, make it progressively larger, say by a factor of 10. Eventually you'll find a ""sweet spot"" and your model will learn.
+
+Refine other parameters
+Now that your model is learning something you can try to optimize it further. At this point try refining the model and other learning parameters. I wouldn't recommend changing the learning rate by much maybe only a factor of 5 or less.        finish this code: # Training loop
+for epoch in range(num_epochs):
+    total_loss = 0
+    hidden = None
+    for batch_inputs, batch_targets in tqdm(train_loader, desc=f""Epoch {epoch+1}/{num_epochs}""):
+        batch_inputs, batch_targets = batch_inputs.to(device), batch_targets.to(device)
+
+        output, hidden = model(batch_inputs, hidden)
+        # Detach removes the hidden state from the computational graph.
+        # This is prevents backpropagating through the full history, and
+        # is important for stability in training RNNs
+        hidden = hidden.detach()
+
+        # TODO compute the loss, backpropagate gradients, and update total_loss
+
+
+    print(f""Epoch {epoch+1}, Loss: {total_loss/len(train_loader):.4f}"")
+
+# Test the model
+# TODO: Implement a test loop to evaluate the model on the test set",Code Generation,Yes,,verified
+P098,c1ab95b0-80d1-7047-e0fd-cf25383a25c1,82397e3c-5c2a-4c8d-b939-db48faad6415,"Convert this SQL query to a pandas query:
+
+**SQL Query**
+```sql
+SELECT Target, COUNT(*) AS count
+FROM your_table_name
+GROUP BY Target;
+```",Code Generation,No,,verified
+P099,017b8560-6081-70e4-7303-6882d8635df0,c0c36c23-0305-434b-8208-5dbd807caf1a,"Root
+|
+t
+|
+h
+|-------------------\
+e                   o                   a
+| \                 | \                 |
+r   e               u   u               g
+|   |               |   |
+e   e               g   g
+                    |   |
+                    h   h
+                    |   |
+                    t   t
+Fix this",Other / Unclear,Yes,,verified
+P100,211b0520-f0e1-7015-0094-4310c79ba2e6,5d405ec0-faf7-41fb-96ab-2cf1ca9c2cd3,"it seems like the answers are nonsensical
+Enter the number of grams (n): 3
+Enter an initial sequence: the
+Enter the length of completion (k): 15
+Updated sequence: thel
+Updated sequence: thell
+Updated sequence: thelll
+Updated sequence: thellll
+Updated sequence: thelllllll
+Updated sequence: thellllllll
+Updated sequence: thelllllllll
+Updated sequence: thellllllllll
+Updated sequence: thelllllllllll
+Updated sequence: thellllllllllll
+Updated sequence: thelllllllllllll
+Updated sequence: thellllllllllllll
+Updated sequence: thelllllllllllllll
+PS C:\Users\<redacted>\OneDrive\Documents\GitHub\assignment-6-n-gram-complete-<redacted> & C:/Users/<redacted>/AppData/Local/Microsoft/WindowsApps/python3.11.exe c:/Users/<redacted>/OneDrive/Documents/GitHub/assignment-6-n-gram-complete-<redacted>/NgramAutocomplete.py
+PS C:\Users\<redacted>\OneDrive\Documents\GitHub\assignment-6-n-gram-complete-<redacted> & C:/Users/<redacted>/AppData/Local/Microsoft/WindowsApps/python3.11.exe c:/Users/<redacted>/OneDrive/Documents/GitHub/assignment-6-n-gram-complete-<redacted>/main.py   
+Enter the number of grams (n): 3
+Enter an initial sequence: the
+Enter the length of completion (k): 15
+Updated sequence: the=
+Updated sequence: the==
+Updated sequence: the===
+Updated sequence: the====
+Updated sequence: the=====
+Updated sequence: the======
+Updated sequence: the=======
+Updated sequence: the========
+Updated sequence: the=========
+Updated sequence: the==========
+Updated sequence: the===========
+Updated sequence: the============
+Updated sequence: the=============
+Updated sequence: the==============
+Updated sequence: the===============",Debugging,No,,verified
+P101,f14b7530-60e1-704a-f8d5-4855523e6d94,deeacd77-a8fa-4761-9647-119bb53dfb0c,"i df_dummies = pd.get_dummies(df_sorted_reset, columns=categorical_columns, prefix=categorical_columns, drop_first=False)
+im using this line and i get true and false in the dummies",Data Processing,Yes,,verified
+P102,016b15c0-a071-70a4-d6d6-0aae841b512a,e5795843-af86-4d11-953d-e668ccd1f254,How can I remove calculate the percentage of rows in a pandas dataframe that contain missing values?,Code Explanation / Review,No,,verified
+P103,218be570-f0f1-7033-b8df-1466adc57225,5e63e6fc-96ba-443f-8157-1661655471ef,"Traceback (most recent call last)
+Cell In[147], line 2
+      1 # Converted SQL to Pandas code
+----> 2 result = df_cleaned.groupby('class').size().reset_index(name='count')
+      3 print(result)
+
+File ~\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\core\frame.py:9183, in DataFrame.groupby(self, by, axis, level, as_index, sort, group_keys, observed, dropna)
+   9180 if level is None and by is None:
+   9181     raise TypeError(""You have to supply one of 'by' and 'level'"")
+-> 9183 return DataFrameGroupBy(
+   9184     obj=self,
+   9185     keys=by,
+   9186     axis=axis,
+   9187     level=level,
+   9188     as_index=as_index,
+   9189     sort=sort,
+   9190     group_keys=group_keys,
+   9191     observed=observed,
+   9192     dropna=dropna,
+   9193 )
+
+File ~\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\pandas\core\groupby\groupby.py:1329, in GroupBy.__init__(self, obj, keys, axis, level, grouper, exclusions, selection, as_index, sort, group_keys, observed, dropna)
+   1326 self.dropna = dropna
+   1328 if grouper is None:
+...
+-> 1038         raise ValueError(f""Grouper for '{name}' not 1-dimensional"")
+   1039     exclusions.add(name)
+   1040 elif obj._is_level_reference(gpr, axis=axis):
+
+ValueError: Grouper for 'class' not 1-dimensional
+Output is truncated. View as a scrollable element or open in a text editor. Adjust cell output se",Debugging,No,,verified
+P104,911b55d0-a0f1-70ac-25c2-07f9eaa08392,437a535b-33d5-4aac-b71f-9825884fb429,"Write a ~350 word response to What did you find interesting or uninteresting? What parts of it stood out to you? Were there parts of it that you agreed or disagreed with? In light of generative AI, how do you think the conversation about AI and work has changed?  based on the documentary The Future of Work: A VICE News Special Report
+Highlight the relevance of the discussion about job automation in today's society, specifically highlighting how generative AI has put more creative and advanced jobs to be at risk. Also talk about the challenges of reskilling/retraining in a constantly changing society",Problem Solving,No,,verified
+P105,c11b3500-c051-70c9-5385-6797f6c08070,0ff6b855-cf25-4c82-89f6-3aa660948c7c,vocab = sorted(set(sequence)),Other / Unclear,Yes,,verified
+P106,c16b2580-e0d1-70dd-532d-007653cefda9,d4dc403c-e644-40bf-bb54-c12a73afb27c,"def predict_next_char(sequence, tables, vocabulary):
+    """"""
+    Predicts the most likely next character based on the given sequence.
+
+    - **Parameters**:
+        - `sequence`: The sequence used as input to predict the next character.
+        - `tables`: The list of frequency tables.
+        - `vocabulary`: The set of possible characters.
+    
+    - **Functionality**:
+        - Calculates the probability of each possible next character in the vocabulary, using `calculate_probability()`.
+
+    - **Returns**:
+        - Returns the character with the maximum probability as the predicted next character.
+    """"""
+    probabilities = {}
+    for char in vocabulary:
+        probabilities[char] = calculate_probability(sequence, char, tables)
+
+    if not probabilities:
+        return None 
+
+    return max(probabilities, key=probabilities.get)
+
+ can you help generated a Nichols acceptable description of this intuition as well",Code Explanation / Review,No,,verified
+P107,c11b2520-70e1-70c8-4f5c-e637ca6a861c,91df615b-0542-499d-944c-c29b1364f078,"from collections import deque
+import heapq
+import random
+import string
+
+
+class Node:
+    #TODO
+    def __init__(self):
+        self.children = {}
+
+class Autocomplete():
+    def __init__(self, parent=None, document=""""):
+        self.root = Node()
+        self.suggest = self.suggest_random #Default, change this to `suggest_dfs/ucs/bfs` based on which one you wish to use.
+
+    
+    
+    def build_tree(self, document):
+        for word in document.split():
+            node = self.root
+            for char in word:
+                #TODO for students
+                pass
+
+    def suggest_random(self, prefix):
+        random_suffixes = [''.join(random.choice(string.ascii_lowercase) for _ in range(3)) for _ in range(5)]
+        return [prefix + suffix for suffix in random_suffixes]
+
+    #TODO for students!!!
+    def suggest_bfs(self, prefix):
+        pass
+
+    
+
+    #TODO for students!!!
+    def suggest_dfs(self, prefix):
+        pass
+
+
+    #TODO for students!!!
+    def suggest_ucs(self, prefix):
+        pass
+
+
+Here's the code above, please follow the provided instructions to write the following algorithms, BFS, DFS< and UCS
+
+What it does:
+
+Implements the Breadth-First Search (BFS) algorithm on the tree.
+Takes a prefix (the letters the user has typed so far) as input.
+Finds all words in the tree that start with the prefix.
+Your task:
+
+Start from the node that corresponds to the last character of the prefix.
+Using BFS traverse the sub tree and build a list of suggestions.
+Run your code with the genZ.txt file and suggest_bfs() method that you just implemented with the prefix ""th"" and note the the autocompleted suggestions it generates in the Reports Section below. Make sure you note down the suggestions in the same order in which they are originally displayed on your screen.
+
+
+3. TODO: suggest_dfs(prefix)
+What it does:
+
+Implements the Depth-First Search (DFS) algorithm on the tree.
+Takes a prefix as input.
+Finds all words in the tree that start with the prefix.
+Your task:
+
+Start from the node that corresponds to the last character of the prefix.
+Using DFS traverse the sub tree and build a list of suggestions.
+Explain your intuition in recursive DFS VS stack-based DFS, and which one you used. Write this in the section provided at the end of this readme.
+Run your code with the genZ.txt file and suggest_dfs() method that you just implemented with the prefix ""th"" and note the the autocompleted suggestions it generates in the Reports Section below. Make sure you note down the suggestions in the same order in which they are originally displayed on your screen.
+
+
+4. TODO: suggest_ucs(prefix)
+What it does:
+
+Implements the Uniform Cost Search (UCS) algorithm on the tree.
+Takes a prefix as input.
+Finds all words in the tree that start with the prefix.
+Prioritizes suggestions based on the frequency of characters appearing after previous characters.
+Your task:
+
+Update build_tree() to store the path cost. The path cost is the inverse frequencies of that letter/char following that prefix of characters.
+Using the inverse of these frequencies creates a lower path cost for more frequent character sequences.
+Start from the node that corresponds to the last character of the prefix.
+Using UCS traverse the sub tree and build a list of suggestions.
+Run your code with the genZ.txt file and suggest_ucs() method that you just implemented with the prefix ""th"" and note the the autocompleted suggestions it generates in the Reports Section below. Make sure you note down the suggestions in the same order in which they are originally displayed on your screen.",Code Generation,Yes,,verified
+P108,01eb0530-d011-70d4-70a6-3d8b36a0733f,cf11e3f9-1083-492d-bdef-90445092990e,"What it does:
+
+Takes a text document as input.
+Splits the document into individual words.
+Inserts each word into a tree (prefix tree) data structure.
+Each character of a word becomes a node in the tree.
+Your task:
+
+Complete the for loop within the build_tree method.       from collections import deque
+import heapq
+import random
+import string
+
+
+class Node:
+    #TODO
+    def __init__(self):
+        self.children = {}
+
+class Autocomplete():
+    def __init__(self, parent=None, document=""""):
+        self.root = Node()
+        self.suggest = self.suggest_random #Default, change this to suggest_dfs/ucs/bfs based on which one you wish to use.
+
+    
+    
+    def build_tree(self, document):
+        for word in document.split():
+            node = self.root
+            for char in word:
+                #TODO for students
+                pass
+
+    def suggest_random(self, prefix):
+        random_suffixes = [''.join(random.choice(string.ascii_lowercase) for _ in range(3)) for _ in range(5)]
+        return [prefix + suffix for suffix in random_suffixes]
+
+    #TODO for students!!!
+    def suggest_bfs(self, prefix):
+        pass
+
+    
+
+    #TODO for students!!!
+    def suggest_dfs(self, prefix):
+        pass
+
+
+    #TODO for students!!!
+    def suggest_ucs(self, prefix):
+        pass",Code Generation,Yes,,verified
+P109,41fb4560-10f1-7016-b8cc-cd2bc89239b7,1a9191e3-d51b-4c74-b55e-308bf5d1bc03,You aren't updating char with the shortening of sequence,Other / Unclear,Yes,,verified
+P110,91bbd550-f0a1-7047-142d-6aeab04713b1,fe8bc95a-cf2a-40ca-b52b-e11c39ec5631,"Now do the same thing (Intuition) for this function
+
+def calculate_probability(sequence, char, tables):
+   """"""
+   Calculates the probability of observing a given sequence of characters using the frequency tables.
+
+
+   - **Parameters**:
+       - sequence: The sequence of characters whose probability we want to compute.
+       - tables: The list of frequency tables created by create_frequency_tables(), this will be of size n.
+
+
+   - **Returns**:
+       - Returns a probability value for the sequence.
+   """"""
+   n = len(tables)
+   max_context_length = n - 1
+
+
+   context = sequence[-max_context_length:] if max_context_length > 0 else ''
+   context_length = len(context)
+
+   ngram = context + char
+   ngram_length = len(ngram)
+
+
+   table_index = ngram_length - 1  
+
+   if table_index >= len(tables):
+       table_index = len(tables) - 1
+       ngram = ngram[-(table_index + 1):]
+       context = ngram[:-1]
+       context_length = len(context)
+
+
+   ngram_table = tables[table_index]
+   ngram_freq = ngram_table.get(ngram, 0)
+
+
+   if context_length > 0:
+       context_table = tables[context_length - 1]
+       context_freq = context_table.get(context, 0)
+   else:
+       context_freq = sum(tables[0].values())
+
+   if context_freq > 0:
+       prob = ngram_freq / context_freq
+   else:
+       prob = 0 
+
+
+   return prob
+
+simple language.
+
+
+
+
+
+
+",Code Explanation / Review,No,,verified
+P111,c11bd560-50c1-70ac-8129-15966669f4ae,901fbe12-f9fb-4389-b6e1-dfcd13c70314,why was the previous one inaccurate?,Concept Explanation,Yes,,verified
+P112,d17b0530-40c1-7051-3339-0d2a5bb89823,807b1df8-559a-4893-8b2f-b9840b64c922,"# Part 4: Data conversions with Large Language Models
+
+One powerful use case of ChatGPT (and other generative language models) is cleaning and transforming data. In some cases, these models can directly manipulate loosely structured data that you provide to them into a standard format. In the other cases, you can often prompt the model to create a conversion or extraction script for you in python or Pandas and then run it on your own. 
+
+In this part of the assignment you will prompt 383GPT to explore these capabilities.
+
+## Part 4.1 GPT Data Manipulation
+
+Take the cleaned dataset that you created in part three and output the top 15 rows of that dataset. Then copy the terminal output, open 383gpt and ask it to convert that output to a markdown table. Paste that markdown table in the cell bellow
+
+tell me step by step what im supposed to do",Assignment Guidance,No,,verified
+P113,011bb520-7041-704f-b3e7-ab5c43dd3950,566e19e9-357d-4b04-93fd-b4696c1e9b4e,How do a create a list in python?,Code Explanation / Review,No,,verified
+P114,e17b7530-3021-70d1-5891-3515d4c26ec6,c7f87d7c-dae1-4510-94d7-4c1c2e12dad2,"This is the output
+Coefficients: [ 0.00000000e+00  1.20000000e+01 -1.27196606e-07  1.26450728e-11
+  2.00000000e+00  2.85714287e-02]
+Intercept: 2.0478793885558844e-05
+
+for this code:",Data Processing,Yes,,verified
+P115,c17b75e0-00a1-7042-14cc-ebf9cec71595,87e3b533-85f2-438d-9428-2a9db97ba7dc,can you give a description of assignment 1,Assignment Guidance,No,,verified
+P116,611bf540-9091-708a-926e-51ff59cf9473,a96e4134-7c67-4546-8308-2c35959a434c,"given a prefix, i want to autocomplete",Code Generation,Yes,,verified
+P117,a1cb4570-5011-70b5-5fdf-1eaee3de61f4,ac85c4ba-85a7-4326-8d83-4b364cea80f2,"Formula
+For an n-gram model, the sequence likelihood is computed as: 
+P
+(
+X
+t
+∣
+X
+1
+,
+…
+,
+X
+t
+−
+1
+)
+=
+f
+(
+X
+1
+,
+…
+,
+X
+t
+)
+f
+(
+X
+1
+,
+…
+,
+X
+t
+−
+1
+)
+P(X 
+t
+​
+ ∣X 
+1
+​
+ ,…,X 
+t−1
+​
+ )= 
+f(X 
+1
+​
+ ,…,X 
+t−1
+​
+ )
+f(X 
+1
+​
+ ,…,X 
+t
+​
+ )
+​
+ 
+Code analysis
+calculate_probability is used to determine the probability of a given character following a specified context using frequency tables generated by an n-gram model.
+The function begins by determining the number of n-gram tables present, derived from the frequency tables created in create_frequency_tables. It checks the length of the provided sequence to handle different cases effectively.
+If the sequence is empty, the function calculates the total number of unigrams and returns the probability of the character as a unigram. This serves as a fallback mechanism for cases where no prior context exists.
+When the sequence length is less than ( n - 1 ), the function still returns a unigram-based probability, as there isn’t enough data to form a valid n-gram.
+In the case where the sequence is sufficient for n-gram calculations, the function constructs the context from the last ( n - 1 ) characters and forms the corresponding n-gram by appending the character of interest. It accesses the n-gram frequency from the last frequency table.
+Then the function retrieves the frequency of the context (n-1) gram. If this context frequency is zero, an adjustment occurs by summing counts for all n-grams that match the existing context, ensuring that all relevant occurrences are considered. It returns zero if the context frequency is not present.
+
+is this correcty",Code Explanation / Review,No,,verified
+P118,510bd5a0-3041-7058-e2cf-5c09d3db1009,2d83c813-d4af-4436-b7fd-bbe001cf93eb,"Convert the following output to a markdown table::
+
+         age    bp       bgr        bu        sc       sod       pot  \
+0   0.202703  0.75  0.158798  0.196078  0.160494  0.166667  0.206897   
+1   0.905405  1.00  0.965665  0.522876  0.641975  0.666667  0.000000   
+3   0.743243  0.50  0.442060  0.901961  0.432099  0.500000  0.793103   
+4   0.729730  0.75  0.150215  0.281046  0.234568  0.533333  0.793103   
+6   0.540541  0.00  0.399142  0.535948  0.358025  0.700000  0.379310   
+8   0.675676  0.75  0.253219  0.633987  0.777778  0.366667  0.655172   
+10  0.716216  0.50  1.000000  0.163399  0.111111  0.066667  0.206897   
+13  0.729730  0.00  0.935622  0.169935  0.160494  0.333333  0.034483   
+17  0.000000  0.00  0.103004  0.372549  0.074074  0.500000  0.689655   
+19  0.878378  0.00  0.206009  0.751634  0.604938  0.533333  0.689655   
+20  0.851351  0.25  0.618026  0.562092  0.728395  0.000000  0.344828   
+21  0.878378  0.25  0.639485  0.470588  0.395062  0.433333  0.517241   
+22  0.783784  0.00  0.725322  0.313725  0.481481  0.566667  0.862069   
+24  0.662162  0.50  0.618026  0.411765  0.432099  0.566667  0.689655   
+25  0.770270  1.00  0.901288  0.163399  0.345679  0.766667  0.206897   
+
+        hemo       pcv      wbcc  ...  pc_normal  pcc_present  ba_present  \
+0   0.059406  0.000000  0.653226  ...      False         True        True   
+1   0.148515  0.225806  0.217742  ...      False         True       False   
+3   0.000000  0.032258  0.395161  ...      False        False       False   
+4   0.336634  0.322581  0.500000  ...       True        False       False   
+6   0.207921  0.161290  0.830645  ...       True        False       False   
+8   0.138614  0.193548  0.169355  ...      False        False       False   
+10  0.267327  0.387097  0.532258  ...       True        False       False   
+13  0.019802  0.064516  0.879032  ...      False         True       False   
+17  0.217822  0.225806  1.000000  ...      False        False        True   
+19  0.366337  0.387097  0.879032  ...       True        False       False   
+20  0.168317  0.161290  0.580645  ...      False         True        True   
+21  0.267327  0.322581  0.104839  ...      False         True        True   
+22  0.178218  0.193548  0.258065  ...      False        False        True   
+24  0.316832  0.354839  0.250000  ...      False         True        True   
+25  0.524752  0.548387  0.443548  ...       True        False        True   
+
+    htn_yes  dm_yes  cad_yes  appet_poor  pe_yes  ane_yes  Target_notckd  
+0     False   False    False       False   False     True          False  
+1      True    True     True        True   False    False          False  
+3      True    True     True        True    True     True          False  
+4     False   False    False       False   False    False          False  
+6      True    True    False       False   False    False          False  
+8      True   False    False       False   False    False          False  
+10    False    True    False        True   False    False          False  
+13     True   False    False        True   False     True          False  
+17    False   False    False        True   False    False          False  
+19     True    True    False        True    True    False          False  
+20     True    True     True       False    True     True          False  
+21     True    True     True       False   False    False          False  
+22     True    True    False        True    True    False          False  
+24     True    True    False       False    True    False          False  
+25     True   False     True       False   False    False          False  
+
+[15 rows x 24 columns]",Data Processing,No,,verified
+P119,312b7500-f041-709a-6408-6f3b6222555b,f867ebff-b6e1-4fed-a9d8-d5d81cebbd63,what is hw 1,Assignment Guidance,No,,verified
+P120,a1fbd5d0-e0e1-7054-7a08-05c01f9a74b1,408c7a9d-b50c-4be2-bf62-e2d32ecb6c60,"""Jav"" the amazon associate mentions they track data on their employees. How many items did he say was the most he ""stowed"" in one day?
+
+
+Choice 1 of 4:1500
+
+Choice 2 of 4:500
+
+Choice 3 of 4:3500
+
+Choice 4 of 4:2300",Problem Solving,No,,verified
+P121,216bd550-9081-7098-93e3-10b74373ebe6,af8a17b2-31ef-40ff-9742-cbb753117aa7,whats it supposed to do,Concept Explanation,Yes,,verified
+P122,310bd5d0-6061-7098-d41e-41b982248427,6014a80c-c420-40d7-979a-eeabf22207e5,"What about y = x.reshape((16,))  # TODO: Reshape to a 1D tensor",Code Explanation / Review,Yes,,verified
+P123,917bc500-1061-70c3-4dd4-f053938b1826,8fd12c43-df1c-433a-b582-59893094638c,Help me with assignment 2,Assignment Guidance,Yes,,verified
+P124,e16b9530-e031-70ad-d225-033f2f45a27d,92b065a5-dafb-41d2-a924-7c29dd59b4a9,"from utilities import read_file, print_table
+from NgramAutocomplete import create_frequency_tables, calculate_probability, predict_next_char
+
+def main():
+    document = read_file('warandpeace.txt')
+    #n = int(input(""Enter the number of grams (n): ""))
+    #initial_sequence = input(f""Enter an initial sequence: "")
+    #k = int(input(""Enter the length of completion (k): ""))
+    n = 2
+    initial_sequence = ""whe""
+    k = 2
+
+    tables = create_frequency_tables(document, n)
+    vocabulary = set(tables[0])
+    print(vocabulary)
+    current_sequence = initial_sequence
+
+    for _ in range(k):
+        # Predict the most likely next character
+        next_char = predict_next_char(current_sequence[-n:], tables, vocabulary)
+        current_sequence += next_char      
+        print(f""probability: {calculate_probability(current_sequence, next_char, tables)}"")
+        print(f""Updated sequence: {current_sequence}"")
+
+if __name__ == ""__main__"":
+    main()
+
+why is vocabulary an empty set",Code Explanation / Review,No,,verified
+P125,a19b0540-7071-7042-dcd4-e8b1bed38ef4,78169471-3e28-4c61-ae64-6b9ef93d2140,get the score of the polynomial model,Problem Solving,Yes,,verified
+P126,c18b0590-1021-70b2-a04d-7da82bf20079,76ebf38b-4ea2-49de-8a99-c7b3c723cb89,"
+
+## Part 4.2 GPT Pandas Prompting
+
+In this section, you will prompt 383GPT to write pandas code manipulations for you.
+
+After working with this data for awhile, we realized we're starting to forget the meanings of the abbreviated column names. Let's ask 383GPT to fix this for us. First, navigate to the [UCI dataset overview](https://archive.ics.uci.edu/dataset/336/chronic+kidney+disease) and copy the abbrevation to name mapping. Then, go to 383GPT and instruct the LLM to provide you with a pandas script to apply this renaming to all the columns of your dataset. Paste that code below and make any adjustments necessary to run it in your notebook.
+
+
+We use the following representation to collect the dataset
+                        age		-	age	
+			bp		-	blood pressure
+			sg		-	specific gravity
+			al		-   	albumin
+			su		-	sugar
+			rbc		-	red blood cells
+			pc		-	pus cell
+			pcc		-	pus cell clumps
+			ba		-	bacteria
+			bgr		-	blood glucose random
+			bu		-	blood urea
+			sc		-	serum creatinine
+			sod		-	sodium
+			pot		-	potassium
+			hemo		-	hemoglobin
+			pcv		-	packed cell volume
+			wc		-	white blood cell count
+			rc		-	red blood cell count
+			htn		-	hypertension
+			dm		-	diabetes mellitus
+			cad		-	coronary artery disease
+			appet		-	appetite
+			pe		-	pedal edema
+			ane		-	anemia
+			class		-	class	
+
+",Data Processing,Yes,,verified
+P127,11dbf510-3071-705c-f2d1-83420f60f130,669e8a59-3742-4462-bd22-64f372917438,are you based of gpt-4o-mini?,Other / Unclear,No,,verified
+P128,11cb7520-40f1-70ca-46b8-915a77bae7de,a8a0179d-d32c-4753-8292-0e389dec31cd,"class Node:
+    #TODO
+    def __init__(self):
+        self.children = {}
+        # self.is_word = False
+
+class Autocomplete():
+    def __init__(self, parent=None, document=""""):
+        self.root = Node()
+        self.suggest = self.suggest_random #Default, change this to `suggest_dfs/ucs/bfs` based on which one you wish to use.
+
+    
+    
+    def build_tree(self, document):
+        for word in document.split():
+            node = self.root
+            for char in word:
+                #TODO for students
+                ",Code Generation,Yes,,verified
+P129,c16be560-e061-709d-a447-5a0779910084,87ab7205-10c5-4403-8a40-ac06ceebcfb9,"I still have a very large loss is it due to the hyper parameters?
+
+# TODO Understand and adjust the hyperparameters once the code is running
+sequence_length = 26 # Length of each input sequence
+stride = 3            # Stride for creating sequences
+embedding_dim = 10      # Dimension of character embeddings
+hidden_size = 5        # Number of features in the hidden state of the RNN
+learning_rate = 0.01    # Learning rate for the optimizer
+num_epochs = 50         # Number of epochs to train
+batch_size = 4        # Batch size for training",Debugging,No,,verified
+P130,e19bc5d0-4021-7079-8270-a5b48b2ed74f,1499c655-712d-4d78-83ca-de7fe1ab25b1,describe briefly what the code does,Code Explanation / Review,No,,verified
+P131,710bd530-f031-7016-ebe5-ee614a366f14,28c16af8-4dbc-4507-92e7-b9bc7e4783ce,"Throughout this chat, I want brief, short answers only. Please provide me brief answers, unless I tell you otherwise",Other / Unclear,No,,verified
+P132,21fba590-60a1-70ba-0967-7fe100d86137,09fdbeb6-53a8-4a5b-96fd-dc21eccbe507,dumb it down,Other / Unclear,Yes,,verified
+P133,d17b6520-5071-7048-0b67-edd7ac9f9e44,a7a2d1f9-13fb-4380-a706-5defaa324d0b,Help me write a few sentences on how I thought the video was interesting because the truck drivers were so passionate about their occupation,Problem Solving,No,,verified
+P134,315b9550-4081-7033-4f93-fe2be67cdfcc,bc2f0fa5-3805-4e17-b1bf-138d3e41584b,"2. calculate_probability(sequence, char, tables)
+Calculates the probability of observing a given sequence of characters using the frequency tables.
+
+Parameters:
+
+sequence: The sequence of characters whose probability we want to compute.
+tables: The list of frequency tables created by create_frequency_tables(), this will be of size n.
+char: The character whose probability of occurrence after the sequence is to be calculated.
+Returns:
+
+Returns a probability value for the sequence.",Code Generation,Yes,,verified
+P135,813b75b0-90b1-7068-9549-77eb9a62ffdc,f179d5d0-ef24-4092-9f9a-9dfd69d0620a,"python pandas function which splits a column into other columns based on the values in that column (ex. column ""value"" contains string values of ""normal"" and ""abnormal"", this function splits ""value"" into boolean columns ""value_normal"" and ""value_abnormal""",Code Generation,No,,verified
+P136,c17be530-0011-7066-b860-92d133614a57,e5652acb-360e-4f2b-b584-7ed9e063021c,"I am building a word autocomplete program in python. This is a description of everything that I need to do for this project. Below that is the starter code given to me to work with in autocomplete.py. Note that the txt files are just a list of words separated by spaces. Below the starter code is the code for main.py that is run and utilities.py.
+TODO: build_tree(document)
+Note
+TODO: Draw the tree diagram of test.txt given in the starter code - Upload the image into your readme into the reports section in the end of this readme.
+What it does:
+Takes a text document as input.
+Splits the document into individual words.
+Inserts each word into a tree (prefix tree) data structure.
+Each character of a word becomes a node in the tree.
+Your task:
+Complete the for loop within the build_tree method.
+TODO: suggest_bfs(prefix)
+What it does:
+Implements the Breadth-First Search (BFS) algorithm on the tree.
+Takes a prefix (the letters the user has typed so far) as input.
+Finds all words in the tree that start with the prefix.
+Your task:
+Start from the node that corresponds to the last character of the prefix.
+Using BFS traverse the sub tree and build a list of suggestions.
+Run your code with the genZ.txt file and suggest_bfs() method that you just implemented with the prefix ""th"" and note the the autocompleted suggestions it generates in the Reports Section below. Make sure you note down the suggestions in the same order in which they are originally displayed on your screen.
+TODO: suggest_dfs(prefix)
+What it does:
+Implements the Depth-First Search (DFS) algorithm on the tree.
+Takes a prefix as input.
+Finds all words in the tree that start with the prefix.
+Your task:
+Start from the node that corresponds to the last character of the prefix.
+Using DFS traverse the sub tree and build a list of suggestions.
+Explain your intuition in recursive DFS VS stack-based DFS, and which one you used. Write this in the section provided at the end of this readme.
+Run your code with the genZ.txt file and suggest_dfs() method that you just implemented with the prefix ""th"" and note the the autocompleted suggestions it generates in the Reports Section below. Make sure you note down the suggestions in the same order in which they are originally displayed on your screen.
+TODO: suggest_ucs(prefix)
+What it does:
+Implements the Uniform Cost Search (UCS) algorithm on the tree.
+Takes a prefix as input.
+Finds all words in the tree that start with the prefix.
+Prioritizes suggestions based on the frequency of characters appearing after previous characters.
+Your task:
+Update build_tree() to store the path cost. The path cost is the inverse frequencies of that letter/char following that prefix of characters.
+Using the inverse of these frequencies creates a lower path cost for more frequent character sequences.
+Start from the node that corresponds to the last character of the prefix.
+Using UCS traverse the sub tree and build a list of suggestions.
+Run your code with the genZ.txt file and suggest_ucs() method that you just implemented with the prefix ""th"" and note the the autocompleted suggestions it generates in the Reports Section below. Make sure you note down the suggestions in the same order in which they are originally displayed on your screen.
+from collections import deque
+#autocomplete.py code
+import heapq
+import random
+import string
+class Node:
+#TODO
+def __init__(self):
+self.children = {}
+class Autocomplete():
+def __init__(self, parent=None, document=""""):
+self.root = Node()
+self.suggest = self.suggest_random #Default, change this to `suggest_dfs/ucs/bfs` based on which one you wish to use.
+def build_tree(self, document):
+for word in document.split():
+node = self.root
+for char in word:
+#TODO for students
+pass
+def suggest_random(self, prefix):
+random_suffixes = [''.join(random.choice(string.ascii_lowercase) for _ in range(3)) for _ in range(5)]
+return [prefix + suffix for suffix in random_suffixes]
+#TODO for students!!!
+def suggest_bfs(self, prefix):
+pass
+#TODO for students!!!
+def suggest_dfs(self, prefix):
+pass
+#TODO for students!!!
+def suggest_ucs(self, prefix):
+pass
+#main.py code
+from autocomplete import Autocomplete
+from utilities import read_file, create_gui
+autocomplete_engine = Autocomplete()
+filename = 'genZ.txt'
+read_file(filename, autocomplete_engine)
+create_gui(autocomplete_engine)
+#utilities.py code
+import tkinter as tk
+from tkinter import ttk
+from autocomplete import Autocomplete
+def read_file(filename, autocomplete_engine):
+try:
+with open(filename, 'r') as file:
+document = file.read()
+autocomplete_engine.build_tree(document)
+except FileNotFoundError:
+print(f""Error: File '{filename}' not found."")
+def suggest_in_gui(event, entry, listbox, autocomplete_engine):
+prefix = entry.get().lower().split()[-1] if len(entry.get()) > 0 else ''
+print(prefix)
+suggestions = autocomplete_engine.suggest(prefix)
+listbox.delete(0, tk.END)
+for suggestion in suggestions[:]:
+listbox.insert(tk.END, suggestion)
+def create_gui(autocomplete_engine):
+window = tk.Tk()
+window.title(""Autocomplete Demo"")
+entry = ttk.Entry(window)
+listbox = tk.Listbox(window)
+entry.bind("""", lambda event: suggest_in_gui(event, entry, listbox, autocomplete_engine))
+entry.pack()
+listbox.pack()
+window.mainloop()",Code Generation,Yes,,verified
+P137,312b35d0-2051-7020-d5a8-cf5e4a3d2b40,3ca34992-00c1-4e10-b9b6-4e82d1c7e9c6,"# Create a tensor with specified shape
+shape = (2,3,)",Code Generation,Yes,,verified
+P138,b19ba550-c0d1-706b-5b31-6f30f3eaa255,149a3b57-dcb2-4092-8533-76784a6158d3,"    # Need to build a trie given the words from the document
+    def build_tree(self, document):
+        for word in document.split():
+            node = self.root
+            for char in word:
+                #TODO for students
+                # create a node for each letter in the word, and have it be on a simple path
+                # if there is a path which exists already for the word, then continue down that path until new nodes need to be created
+
+                if char not in node.children:
+                    node.children[char] = Node()
+                if char not in node.frequency_counter:
+                    node.frequency_counter[char] = 0
+                node.frequency_counter[char] += 1
+                node = node.children[char] 
+            node.end = True
+
+give me short intuition of this code",Code Explanation / Review,No,,verified
+P139,014b6540-3041-705c-365b-d2029fb91b21,1b607f3b-9e66-4010-8488-89755b39af16,how to do X as all columns but survived,Data Processing,Yes,,verified
+P140,912bd5e0-5061-7098-cb02-8d6eae25468c,a8b6e81b-bf26-4916-8350-fbdaaa209a23,how would you use a stack to traverse a tree using dfs,Concept Explanation,No,,verified
+P141,410b95f0-5061-701c-4a3c-9930963ae77f,eb6ad7f7-0ac6-4034-b11e-819227766943,what is weight decay for,Concept Explanation,No,,verified
+P142,b10b7510-d0b1-702f-66b3-3c1a07997d6d,23203cce-0a25-4951-8fd1-9168f51cf207,simpleier term plz,Other / Unclear,Yes,,verified
+P143,e18b45c0-20a1-7039-271f-10630ddc7b88,667e0385-b904-49a1-927e-933c64e211b5,"I want to sort the dataset according to the values in a column, and reset the indicies after this sort. how can i do this",Data Processing,No,,verified
+P144,c1ab6550-a0a1-7068-381c-46a9e01d4df5,e71983c8-97e3-4f71-b434-2fba229e4038,sort value in a dataset according to values in the target column of a pandas dataframe,Data Processing,No,,verified
+P145,f16b2520-6021-70ee-b980-7a50d804795d,1c741da1-3739-4b9c-bbca-86b21ada11a2,What is mEq/L,Concept Explanation,No,,verified
+P146,31cb6500-d081-7067-9d22-37992452f2ad,1a20f941-c676-4163-9144-64c086c9b044,"def generate_text(model, start_text, n, k, temperature=1.0):
+    """"""
+        model: The trained RNN model used for character prediction.
+        start_text: The initial string of length `n` provided by the user to start the generation.
+        n: The length of the initial input sequence.
+        k: The number of additional characters to generate.
+        temperature: Optional
+        A scaling factor for randomness in predictions. Higher values (e.g., >1) make 
+            predictions more random, while lower values (e.g., <1) make predictions more deterministic.
+            Default is 1.0.
+    """"""
+    start_text = start_text.lower()
+    #TODO: Implement the rest of the generate_text function",Code Generation,No,,verified
+P147,61eb0590-9001-70e9-9ded-e189346bd845,3c673ec1-bcad-4e9a-a6db-7dae7231cb15,Create a table with some provided data,Data Processing,Yes,,verified
+P148,21bb6580-40b1-7001-244b-d1c1ba0cec48,c809dffd-5ed3-4ea8-b6d3-29025b18e6f2,who is jr ntr,Problem Solving,No,,verified
+P149,017bc500-50b1-70d6-f73f-a218553355df,23bef996-01e2-480d-87c3-43e8a21bbee4,isthat right,Other / Unclear,Yes,,verified
+P150,919be590-7081-7003-3cef-906e621826ff,ba8df9f0-fc0c-4b2c-826a-33a0ca2a5c28,optimizer adam vs sgd,Concept Explanation,Yes,,verified
+P151,811bc590-9011-705e-82d7-38a6c705a6c4,92e62cf1-a977-4047-8957-73f9e942a037,dataframe function to see how many rows have missing data,Data Processing,No,,verified
+P152,714b9540-8061-70d8-daaa-8a4b42d4dd71,ce25b7a4-1d82-4536-8355-da003a19f57f,"# Take the dataset and split it into our features (X) and label (y)
+
+# Use sklearn to split the features and labels into a training/test set. (90% train, 10% test)
+",Code Generation,Yes,,verified
+P153,f1cba540-a0d1-70b2-f94d-ddac74add408,fddb61ff-abf2-4b10-86af-2c9262cc6435,"<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border=""1"" class=""dataframe"">
+  <thead>
+    <tr style=""text-align: right;"">
+      <th></th>
+      <th>unique_id</th>
+      <th>age</th>
+      <th>bp</th>
+      <th>bgr</th>
+      <th>bu</th>
+      <th>sc</th>
+      <th>sod</th>
+      <th>pot</th>
+      <th>hemo</th>
+      <th>pcv</th>
+      <th>...</th>
+      <th>pc_normal</th>
+      <th>pcc_present</th>
+      <th>ba_present</th>
+      <th>htn_yes</th>
+      <th>dm_yes</th>
+      <th>cad_yes</th>
+      <th>appet_good</th>
+      <th>pe_yes</th>
+      <th>ane_yes</th>
+      <th>Target_notckd</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>343710</td>
+      <td>0.743243</td>
+      <td>0.50</td>
+      <td>0.442060</td>
+      <td>0.901961</td>
+      <td>0.432099</td>
+      <td>0.500000</td>
+      <td>0.657143</td>
+      <td>0.172131</td>
+      <td>0.210526</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>397388</td>
+      <td>0.770270</td>
+      <td>1.00</td>
+      <td>0.901288</td>
+      <td>0.163399</td>
+      <td>0.345679</td>
+      <td>0.766667</td>
+      <td>0.171429</td>
+      <td>0.606557</td>
+      <td>0.631579</td>
+      <td>...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>438182</td>
+      <td>0.905405</td>
+      <td>0.50</td>
+      <td>0.785408</td>
+      <td>0.862745</td>
+      <td>0.518519</td>
+      <td>0.600000</td>
+      <td>0.828571</td>
+      <td>0.401639</td>
+      <td>0.447368</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>474407</td>
+      <td>0.202703</td>
+      <td>0.75</td>
+      <td>0.158798</td>
+      <td>0.196078</td>
+      <td>0.160494</td>
+      <td>0.166667</td>
+      <td>0.171429</td>
+      <td>0.221311</td>
+      <td>0.184211</td>
+      <td>...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>475200</td>
+      <td>0.783784</td>
+      <td>1.00</td>
+      <td>0.399142</td>
+      <td>0.287582</td>
+      <td>0.839506</td>
+      <td>0.666667</td>
+      <td>0.485714</td>
+      <td>0.188525</td>
+      <td>0.263158</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>481293</td>
+      <td>0.729730</td>
+      <td>0.00</td>
+      <td>0.935622</td>
+      <td>0.169935</td>
+      <td>0.160494</td>
+      <td>0.333333</td>
+      <td>0.028571</td>
+      <td>0.188525</td>
+      <td>0.236842</td>
+      <td>...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>514721</td>
+      <td>0.675676</td>
+      <td>0.75</td>
+      <td>0.253219</td>
+      <td>0.633987</td>
+      <td>0.777778</td>
+      <td>0.366667</td>
+      <td>0.542857</td>
+      <td>0.286885</td>
+      <td>0.342105</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>995177</td>
+      <td>0.851351</td>
+      <td>0.25</td>
+      <td>0.618026</td>
+      <td>0.562092</td>
+      <td>0.728395</td>
+      <td>0.000000</td>
+      <td>0.285714</td>
+      <td>0.311475</td>
+      <td>0.315789</td>
+      <td>...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>546225</td>
+      <td>0.540541</td>
+      <td>0.00</td>
+      <td>0.399142</td>
+      <td>0.535948</td>
+      <td>0.358025</td>
+      <td>0.700000</td>
+      <td>0.314286</td>
+      <td>0.344262</td>
+      <td>0.315789</td>
+      <td>...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>980291</td>
+      <td>0.756757</td>
+      <td>0.25</td>
+      <td>0.223176</td>
+      <td>0.209150</td>
+      <td>0.160494</td>
+      <td>0.533333</td>
+      <td>0.514286</td>
+      <td>0.573770</td>
+      <td>0.605263</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>955830</td>
+      <td>0.662162</td>
+      <td>0.50</td>
+      <td>0.618026</td>
+      <td>0.411765</td>
+      <td>0.432099</td>
+      <td>0.566667</td>
+      <td>0.571429</td>
+      <td>0.434426</td>
+      <td>0.473684</td>
+      <td>...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>923613</td>
+      <td>0.783784</td>
+      <td>0.00</td>
+      <td>0.725322</td>
+      <td>0.313725</td>
+      <td>0.481481</td>
+      <td>0.566667</td>
+      <td>0.714286</td>
+      <td>0.319672</td>
+      <td>0.342105</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>843362</td>
+      <td>0.878378</td>
+      <td>0.00</td>
+      <td>0.206009</td>
+      <td>0.751634</td>
+      <td>0.604938</td>
+      <td>0.533333</td>
+      <td>0.571429</td>
+      <td>0.475410</td>
+      <td>0.500000</td>
+      <td>...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>828592</td>
+      <td>0.878378</td>
+      <td>0.25</td>
+      <td>0.639485</td>
+      <td>0.470588</td>
+      <td>0.395062</td>
+      <td>0.433333</td>
+      <td>0.428571</td>
+      <td>0.393443</td>
+      <td>0.447368</td>
+      <td>...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>621332</td>
+      <td>0.716216</td>
+      <td>0.50</td>
+      <td>1.000000</td>
+      <td>0.163399</td>
+      <td>0.111111</td>
+      <td>0.066667</td>
+      <td>0.171429</td>
+      <td>0.393443</td>
+      <td>0.500000</td>
+      <td>...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+<p>15 rows × 25 columns</p>
+</div>
+
+can you put it into a markdown table",Data Processing,No,,verified
+P154,e18b6520-b0e1-70b8-ec64-a69aa95d052f,ee338ac5-bca4-4c20-a805-c16f71d6c6b0,Is there an easy way to remove the index column from the data,Data Processing,No,,verified
+P155,71db5530-00e1-709f-0e88-2c9a19f8dc8b,babb70e4-ca65-4ce1-8dc0-116793676bd0,Can you write a short description in 3 sentences ,Problem Solving,Yes,,verified
+P156,019be580-4061-7075-debb-ffd77dc8ca40,dc6ae462-e940-41e5-a50f-cb200122d764,"Change into tablue data:
+MLPClassifier1
+0.9350537634408603
+0.040465552982107675
+MLPClassifier2
+0.9152688172043011
+0.0482382417647169
+MLPClassifier3
+0.9804301075268818
+0.0259173245508522",Data Processing,No,,verified
+P157,01ebf5c0-7001-7089-68b3-ebba941641c4,9bca8627-7cba-4ac7-8298-fe1aa7044c27,"def train_model(train_loader, num_epochs, learning_rate):
+  # we have provided the loss and optimizer below
+  criterion = nn.BCELoss()
+  optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+  train_losses = []
+
+  for epoch in range(num_epochs):
+      total_loss = 0
+      # TODO: Compute the Gradient and Loss by iterating train_loader
+      # TODO: Print and store loss at each epoch
+      train_losses = optimizer.zero_grad()
+      
+
+  return train_losses
+
+num_epochs = 20
+learning_rate = 0.001
+train_losses = train_model(train_loader, num_epochs, learning_rate)
+
+# TODO: Plot the Training Loss Curve by (Epoch # on x-axis and loss on y-axis)
+
+ ",Code Generation,Yes,,verified
+P158,41bbf590-9091-7030-9e14-d33b01f1aae6,ce6fc120-94af-46d6-9781-5b3f8290dab1,"can you convert this SQL query to a pandas query? 
+SELECT Target, COUNT(*) AS count
+FROM your_table_name
+GROUP BY Target;",Code Generation,No,,verified
+P159,d1db45a0-f051-702b-f627-c33637d4528c,67b974db-116c-40b8-af9c-5ea3bcc27b42,How can I get a formula for the polynomial regression?,Problem Solving,Yes,,verified
+P160,a1fbb540-3041-70e7-def6-bcec00a31d99,7d8a1716-b27c-4b00-a8cc-d71390e25bdd,Update build_tree() to store the path cost. The path cost is the inverse frequencies of that letter/char following that prefix of characters.,Code Generation,No,,verified
+P161,113be530-c071-70a1-1d40-1b6e6088e134,6cf52ee5-ff2a-462f-9bf3-f7b968b5c808,What is assignment 1 about?,Assignment Guidance,No,,verified
+P162,617b2500-4071-70e9-29f1-b4c4ce63bfaa,cb747697-ec71-4073-b2d5-6722d8157eb2,Can you put the summary into 1 paragraph,Problem Solving,Yes,,verified
+P163,e12ba500-f0e1-70f2-73ab-05c1cbc44b76,f38558d1-368a-4e2c-bba8-c9094cbb1a09,"fix this sentence for me: 
+I did do some experiments on Learning rate, Optimizer functions, and MLP architecture. According to the return table, the accuracy does not change regardless of chaning number of layers, or linear funtions. Next, the best combination so far is the learning rate is 1, optimizer is NAdam, the linear functions are all relu because the last lost is just 0.086. ",Other / Unclear,No,,verified
+P164,b12b4550-8001-70f9-71be-240eab8f838e,5a8a8004-67d7-4698-a641-e746127036ac," In the context of IEEE Standard for Single Precision Floating Point representation, the value given is '0 10000001 111000000000000000000', what is its decimal equivalent, i.e., 0.001? ",Problem Solving,No,,verified
+P165,d1bb4520-5021-700b-e6c7-ba9f0d11e538,28828106-4f88-4c8c-8e5c-293ccfa50c2c,Its AI,Other / Unclear,Yes,,verified
+P166,e1bb25a0-d0b1-703c-dff4-aef708b16181,f6c2a79c-0af8-47cf-a6a1-0d8b516ef32c,Can you summarize this into a couple of sentences ,Other / Unclear,Yes,,verified
+P167,510b5580-60e1-7095-f35a-7fd78cd92cfe,ce03d932-ada2-46ef-8513-621aa2f98087,write a python program that given an array of words builds a tree of characters so that any word can be obtained by traversing the tree forward. The children nodes should be stored in a dictionary,Code Generation,No,,verified
+P168,410bf580-d041-70ad-e668-e60717bb3b98,29645dfc-5669-4326-b919-1bf8fada211d,"Inside CharRNN.__init__(), you’ll need to define the learned parameters of the RNN
+
+Your task: Randomly initialize each parameter using nn.Parameter(...), and follow the structure discussed in lecture. Keep standard deviations small (e.g., * 0.01).
+
+how should I get started on this task",Assignment Guidance,No,,verified
+P169,915b1540-40a1-709f-69ee-13ca3e80fcf2,94833e62-3b19-45ed-9c53-d6259496c040,"Adjusted for inflation, has public funding for reskilling and retraining increased or decreased in the last 20 years?
+
+
+Choice 1 of 2:Increased
+
+Choice 2 of 2:Decreased",Problem Solving,No,,verified
+P170,31db5580-10e1-70d5-9f5c-004b166ac03c,36641b2b-f75c-4b74-a93d-34363d80c7a2,"def test_model():
+  correct = 0
+  total = 0
+
+  # When we are doing inference on a model, we do not need to keep track of gradients
+  # torch.no_grad() indicates to pytorch to not store gradients for more efficent inference
+  with torch.no_grad():
+    # TODO: Iterate through test_loader and perform a forward pass to compute predictions
+
+  print(f""Test Accuracy: {100 * correct / total:.2f}%"")
+
+test_model()",Code Generation,Yes,,verified
+P171,f1abb5c0-3001-7042-a4b5-d6561c36322c,0c9506ae-56ce-4529-bad7-ad6f2c8652f1,"Which of the following is NOT a valid interpretation of a 95% confidence interval?
+
+There is a 95% probability that a particular computed confidence interval contains the true value.
+
+If we repeated our sampling procedure a large number of times, we expect about 95% of the resulting confidence intervals to capture the value of the population parameter.
+
+We are 95% confident that a 95% confidence interval captures the value of the population parameter.",Problem Solving,No,,verified
+P172,d17b4550-a0d1-7014-38bf-d8d68777c4f4,9229803b-473b-429b-ae60-0f9a07a9be21,i have 2 csv files can u explain the difference and their purpsoe,Data Processing,No,,verified
+P173,415b55a0-10a1-704e-fbb1-94f533c8040b,06300b35-f818-4139-aa4f-dd5d0fb850e4,would it be normal to have the hidden state size be close to the output size?,Concept Explanation,No,,verified
+P174,31ab1560-b091-7055-7307-da7f622a0e6b,777682fb-3676-4cd8-927d-3b1b83bd71af,# Part 2. Chronic Kidney Disease Prediction via Classification. Create code and markdown cells as needed to perform classification and report on your results. # Load the dataset. Then train and evaluate the classification models.,Code Generation,Yes,,verified
+P175,71cbe580-90f1-7027-51c8-f471e501854b,14e5c65f-73e5-47b7-814c-66419ce07b6e,"The task type is text generation. I'm looking to start with a simple model. The computational resources are somewhat small. The first target sequence length is around 2500 characters long, but the second is much longer, around 4200000 characters. ",Other / Unclear,Yes,,verified
+P176,119b55f0-6001-70b7-9cf8-aff7a0dc1623,677e9ba4-c795-4101-b1ba-5e0237a3f95a,what is a epoch?,Concept Explanation,No,,verified
+P177,415b45e0-c021-70ec-1015-5db26e8e37a8,2c50d3d8-7fee-4d4c-bd38-3bf6ee394388,"# Build the Trie if a document is provided
+        if document:
+            self.build_tree(document) does not work",Debugging,No,,verified
+P178,c1ab8590-4021-709d-24e8-65c1ff2dac53,74d95a7d-3535-4768-abab-884c6c027b76,can you check my code for 5: polynominal regression,Code Explanation / Review,No,,verified
+P179,f15b75b0-6011-7034-bf08-1dd66fe5cffa,7a024bc8-94b6-47be-963d-c3c0a624db66,"what does orients records and lines = true do?
+",Concept Explanation,No,,verified
+P180,a1ebb500-9081-70a6-c0d9-6fc5a9b63b7d,95220c8e-b757-4333-a390-2f749e88ea34,not only for that there are few more things,Other / Unclear,Yes,,verified
+P181,21fb2560-d0c1-70cc-8456-cb80cc078b11,78b52b16-f7d1-4108-9803-9eb018515f8b,"Can you write code that makes the output in this format? 
+
+The probability of class `0` is `0.1`
+The probability of class `1` is `0.7`
+The probability of class `2` is `0.2`",Code Generation,No,,verified
+P182,c17bf5d0-5091-70a9-0d1d-8fbc31f9c224,a22ceb3a-5277-4e2e-9ebc-b009045bb87c,"- Now using your probability tables above, it is time to calculate the probability distribution of all the next possible characters from the vocabulary
+- ***Calculate the following and show all the steps involved***
+1. $P(X_3=a \mid X_1=a, X_2=a )$
+   - *Show your work*
+2. $P(X_3=b \mid X_1=a, X_2=a)$
+   - *Show your work*
+3. $P(X_3=c \mid X_1=a, X_2=a)$
+   - *Show your work*   Here are the probability tables again for reference: 
+- Assume that your training document is (for simplicity) `""aababcaccaaacbaabcaac""`, and the sequence given to you is `""aa""`. Given n = 2, do the following:
+
+1. ***What is your vocabulary in this case***
+   - Vocabulary: `{a, b, c}`
+  
+2. ***Write down your probabillity table 1***:
+   
+   | $P(\odot)$ | Probability value |  
+   | ---------- | ----------------- |
+   | $P(a)$     | $\frac{11}{21}$   |
+   | $P(b)$     | $\frac{5}{21}$    |
+   | $P(c)$     | $\frac{5}{21}$    |
+ 
+3. ***Write down your probability table 2***:
+
+   | $P(\odot)$         | Probability value     |  
+   | -------------------| --------------------- |
+   | $P(a \mid a)$      | $\frac{4}{11}$        |
+   | $P(b \mid a)$      | $\frac{3}{11}$        |
+   | $P(c \mid a)$      | $\frac{4}{11}$        | 
+   | $P(a \mid b)$      | $\frac{2}{5}$         |
+   | $P(c \mid b)$      | $\frac{2}{5}$         |
+   | $P(a \mid c)$      | $\frac{2}{5}$         |
+   | $P(c \mid c)$      | $\frac{1}{5}$         |
+
+4. ***Write down your probability table 3***:
+
+   | $P(\odot)$             | Probability value     |  
+   | -----------------------| --------------------- |
+   | $P(a \mid a, a)$       | $\frac{1}{4}$         |
+   | $P(b \mid a, a)$       | $\frac{2}{4}$         |
+   | $P(c \mid a, a)$       | $\frac{1}{4}$         |
+   | $P(a \mid a, b)$       | $\frac{2}{3}$         |
+   | $P(c \mid a, b)$       | $\frac{1}{3}$         |
+   | $P(a \mid a, c)$       | $\frac{2}{3}$         |
+   | $P(c \mid a, c)$       | $\frac{1}{3}$         |  Again, please give me the answers in markdown format so that I can copy ",Problem Solving,No,,verified
+P183,f11bc560-6081-70ae-2949-07ca788f237b,bb25a923-d752-4c1d-bb11-971b0ae22a25,k fold cross validation sklearn,Concept Explanation,Yes,,verified
+P184,011bd560-70e1-7036-62a9-3d29afd5179d,75585ddd-ee5d-4334-a2c9-43b591e8b4e8,Hi how's your day,Other / Unclear,No,,verified
+P185,31fbe520-0061-70e7-7783-8fdc38bd09fd,28bff92b-36e4-4656-bacd-293fbe4a12be,"## Section 1: PyTorch Tensors
+
+- These next few code blocks introduce PyTorch tensors, covering their creation from lists and NumPy arrays, initialization with random values, ones, and zeros, and key attributes like shape, datatype, and device placement.
+- Please fill out the None values in the following cells with the appropriate functions
+# Import the PyTorch library
+import torch
+
+# ### Creating Tensors
+data = [[1, 2], [3, 4]]
+# TODO: Create a tensor from a list and output the tensor
+x_data = None
+print(f""Tensor from list:\n {x_data} \n"")
+help complete this function",Code Generation,No,,verified
+P186,c14bf560-2021-705a-7bb3-97ad9cbde502,8b57e94a-0c7d-4450-8296-b0eea29bf2c5,My Neural Network (MLP Classifier) model received a score of SCORE = 0.93333. What does the score measure and what does this score mean?,Concept Explanation,No,,verified
+P187,a1fb3570-f021-705f-6d23-353ec8617ab4,3698d8f9-22e4-4b91-83ba-91000abf8978,wait how does this merge again? can you give an example using 2 smaller made up datasets,Concept Explanation,Yes,,verified
+P188,c16b0500-b021-70a6-5bdc-2c3e5e0472c6,8a464a16-c0f2-4b7f-b4c0-fc51471fca2a,"Based on the output of this pandas df (first 15 rows), create a markdown table. Ensure all the numbers match and verify the index. once the markdown table is created, verify number, index, and feature names with the input df I will share. Input df:          age    bp       bgr        bu        sc       sod       pot  \
+0   0.202703  0.75  0.158798  0.196078  0.160494  0.166667  0.171429   
+1   0.905405  1.00  0.965665  0.522876  0.641975  0.666667  0.000000   
+3   0.743243  0.50  0.442060  0.901961  0.432099  0.500000  0.657143   
+4   0.729730  0.75  0.150215  0.281046  0.234568  0.533333  0.657143   
+6   0.540541  0.00  0.399142  0.535948  0.358025  0.700000  0.314286   
+8   0.675676  0.75  0.253219  0.633987  0.777778  0.366667  0.542857   
+10  0.716216  0.50  1.000000  0.163399  0.111111  0.066667  0.171429   
+13  0.729730  0.00  0.935622  0.169935  0.160494  0.333333  0.028571   
+15  0.837838  0.50  0.373391  0.522876  0.456790  0.333333  1.000000   
+17  0.000000  0.00  0.103004  0.372549  0.074074  0.500000  0.571429   
+19  0.878378  0.00  0.206009  0.751634  0.604938  0.533333  0.571429   
+20  0.851351  0.25  0.618026  0.562092  0.728395  0.000000  0.285714   
+21  0.878378  0.25  0.639485  0.470588  0.395062  0.433333  0.428571   
+22  0.783784  0.00  0.725322  0.313725  0.481481  0.566667  0.714286   
+24  0.662162  0.50  0.618026  0.411765  0.432099  0.566667  0.571429   
+
+        hemo       pcv      wbcc  ...  cad_no  cad_yes  appet_good  \
+0   0.221311  0.184211  0.653226  ...    True    False        True   
+1   0.295082  0.368421  0.217742  ...   False     True       False   
+3   0.172131  0.210526  0.395161  ...   False     True       False   
+4   0.450820  0.447368  0.500000  ...    True    False        True   
+6   0.344262  0.315789  0.830645  ...    True    False        True   
+8   0.286885  0.342105  0.169355  ...    True    False        True   
+10  0.393443  0.500000  0.532258  ...    True    False       False   
+13  0.188525  0.236842  0.879032  ...    True    False       False   
+15  0.000000  0.000000  0.540323  ...   False     True       False   
+17  0.352459  0.368421  1.000000  ...    True    False       False   
+19  0.475410  0.500000  0.879032  ...    True    False       False   
+20  0.311475  0.315789  0.580645  ...   False     True        True   
+21  0.393443  0.447368  0.104839  ...   False     True        True   
+22  0.319672  0.342105  0.258065  ...    True    False       False   
+24  0.434426  0.473684  0.250000  ...    True    False        True   
+
+    appet_poor  pe_no  pe_yes  ane_no  ane_yes  Target_ckd  Target_notckd  
+0        False   True   False   False     True        True          False  
+1         True   True   False    True    False        True          False  
+3         True  False    True   False     True        True          False  
+4        False   True   False    True    False        True          False  
+6        False   True   False    True    False        True          False  
+8        False   True   False    True    False        True          False  
+10        True   True   False    True    False        True          False  
+13        True   True   False   False     True        True          False  
+15        True  False    True    True    False        True          False  
+17        True   True   False    True    False        True          False  
+19        True  False    True    True    False        True          False  
+20       False  False    True   False     True        True          False  
+21       False   True   False    True    False        True          False  
+22        True  False    True    True    False        True          False  
+24       False  False    True    True    False        True          False  ",Data Processing,No,,verified
+P189,911b1530-f081-70c6-8ba9-81ba9defa173,bd7d367b-c68f-4aab-8c58-f687976b1e08,"my code: from utilities import read_file
+
+def create_frequency_tables(document, n):
+    """"""
+    This function constructs a list of `n` frequency tables for an n-gram model, each table capturing character frequencies with increasing conditional dependencies.
+
+    - **Parameters**:
+        - `document`: The text document used to train the model.
+        - `n`: The number of value of `n` for the n-gram model.
+
+    - **Returns**:
+        - Returns a list of n frequency tables.
+    """"""
+    frequency_tables = []
+    document = read_file(document)
+    
+    for i in range(1, n+1):
+        frequency = {}
+        for j in range(len(document)):
+            gram = document[j:j+i]
+            if len(gram) == i:
+                if gram in frequency:
+                    frequency[gram] += 1
+                else:
+                    frequency[gram] = 1
+            
+        frequency_tables.append(frequency)
+
+    return frequency_tables
+
+
+def calculate_probability(sequence, char, tables):
+    """"""
+    Calculates the probability of observing a given sequence of characters using the frequency tables.
+
+    - **Parameters**:
+        - `sequence`: The sequence of characters whose probability we want to compute.
+        - `tables`: The list of frequency tables created by `create_frequency_tables()`, this will be of size `n`.
+        - `char`: The character whose probability of occurrence after the sequence is to be calculated.
+
+    - **Returns**:
+        - Returns a probability value for the sequence.
+    """"""
+    c = 0
+    freq_char = 0
+    for table in tables:
+        for gram in table:
+            if len(gram) == 1:
+                c += table[gram]
+            if gram == sequence+char:
+                freq_char = table[gram]
+    return freq_char/c
+
+
+def predict_next_char(sequence, tables, vocabulary):
+    """"""
+    Predicts the most likely next character based on the given sequence.
+
+    - **Parameters**:
+        - `sequence`: The sequence used as input to predict the next character.
+        - `tables`: The list of frequency tables.
+        - `vocabulary`: The set of possible characters.
+    
+    - **Functionality**:
+        - Calculates the probability of each possible next character in the vocabulary, using `calculate_probability()`.
+
+    - **Returns**:
+        - Returns the character with the maximum probability as the predicted next character.
+    """"""
+    max = 0
+    next_char = ''
+    for char in vocabulary:
+        prob = calculate_probability(sequence, char, tables)
+        if prob > max:
+            max = prob
+            next_char = char
+    return next_char
+
+
+how to answer this: Experiment with the given corpus files and varying values of n. Do any corpus work better than others? How high of a value of n can you run before the table calculation becomes too time consuming? Write a short paragraph describing your findings.",Code Explanation / Review,Yes,,verified
+P190,81cbb5e0-9011-7077-7e4e-7aca1564666c,fd7e7888-9aa7-4dc5-bc0c-f775157ba3b4,"Predicted output: [643298.76699403]
+Score: 0.8552472077276096
+Intercept: -409391.4795834081
+Coefficients: [ 866.14641337 1032.69506649]  # Extract the coefficients and intercept from the model and write an equation for your h(x) using LaTeX  Write the linear equation of a slime: (example equation: $E = mc^2$)",Problem Solving,No,,verified
+P191,91eb4560-80d1-706f-3e42-8631c8034d21,9483f7e1-556e-486c-81ce-4a5191d9be4e,"when starting the assignment, when I run python3 main.py, what should happen",Assignment Guidance,No,,verified
+P192,71cb5540-20c1-70a9-1806-fbc6af5f0b86,3a5f89e0-2a36-4fc6-970a-8e612e31c650,"Are all the unique ids are present in both datasets? Why do you think so? If not, what do the rows that are missing from one of the datasets look like in the combined table?",Problem Solving,No,,verified
+P193,619bd5c0-3031-70df-5cbd-c3b6d763d84b,9320ca29-2eb3-4e8a-aa0d-e283915944dc,needs to be minimum 250,Other / Unclear,Yes,,verified
+P194,a15bd5a0-20b1-705d-cacd-efb43606a358,924e0ee4-ae05-419c-8cb9-effdd377a82d,"# i. Use sklearn to train a Neural Network (MLP Classifier) on the training set
+
+# ii. For a sample datapoint, predict the probabilities for each possible class
+
+# iii. Report on the score for the Neural Network, what does the score measure?
+
+# iv: Experiment with different options for the neural network, report on your best configuration",Problem Solving,Yes,,verified
+P195,f1cbc5b0-a0b1-7062-ca17-580f39de4c83,54a145a9-590d-445f-94ca-a8dba6ba2f53,"nn1       nn2       nn3       nn4       nn5
+mean  0.967527  0.960860  0.967527  0.961075  0.973978
+std   0.035340  0.031523  0.035340  0.037585  0.037658 do this",Other / Unclear,Yes,,verified
+P196,117bf560-5011-70e9-de01-b833f5651c83,6cfd48b8-d412-453a-90b7-a8e110b47e08,How to add to an array in python,Code Explanation / Review,No,,verified
+P197,e1cb9560-4091-706e-840f-87a913394f9e,1b0e6f18-8cb1-4723-b894-84ded1479e80,"can you encode two column at the same time?
+
+# TODO: Encode categorical features ""Sex"" and ""Embarked""
+# Hint: Use LabelEncoder (check imports)
+label_encoder = LabelEncoder()
+data[""Species""] = label_encoder.fit_transform(data[""Species""])",Data Processing,Yes,,verified
+P198,613b1510-4051-7027-1ee2-8f2c72d3c64b,099ed0d5-e6d0-4c79-bf8d-99baf2634780,how would i append to the beginning of a string,Code Explanation / Review,No,,verified
+P199,913b9550-d0d1-70fe-1817-55e26d83e2ef,65769a00-b3a7-42bd-a6d0-13becbb683ae,"This is a dataset. Please convert this to a markdown table
+    unique_id     age   bp       bgr        bu        sc       sod       pot  \
+0      343710  0.7625  0.8  0.570957  0.907975  0.458824  0.900000  0.896552   
+1      397388  0.7875  1.0  0.924092  0.214724  0.376471  0.953333  0.603448   
+2      438182  0.9125  0.8  0.834983  0.871166  0.541176  0.920000  1.000000   
+3      474407  0.2625  0.9  0.353135  0.245399  0.200000  0.833333  0.603448   
+4      475200  0.8000  1.0  0.537954  0.331288  0.847059  0.933333  0.793103   
+5      481293  0.7500  0.6  0.950495  0.220859  0.200000  0.866667  0.517241   
+6      514721  0.7000  0.9  0.425743  0.656442  0.788235  0.873333  0.827586   
+7      995177  0.8625  0.7  0.706271  0.588957  0.741176  0.800000  0.672414   
+8      546225  0.5750  0.6  0.537954  0.564417  0.388235  0.940000  0.689655   
+9      980291  0.7750  0.7  0.402640  0.257669  0.200000  0.906667  0.810345   
+10     955830  0.6875  0.8  0.706271  0.447853  0.458824  0.913333  0.844828   
+11     923613  0.8000  0.6  0.788779  0.355828  0.505882  0.913333  0.931034   
+12     843362  0.8875  0.6  0.389439  0.766871  0.623529  0.906667  0.844828   
+13     828592  0.8875  0.7  0.722772  0.503067  0.423529  0.886667  0.758621   
+14     621332  0.7375  0.8  1.000000  0.214724  0.152941  0.813333  0.603448   
+
+        hemo       pcv  ...  cad_no  cad_yes  appet_good  appet_poor  pe_no  \
+0   0.432584  0.444444  ...   False     True       False        True  False   
+1   0.730337  0.740741  ...   False     True        True       False   True   
+2   0.589888  0.611111  ...   False     True        True       False   True   
+3   0.466292  0.425926  ...    True    False        True       False   True   
+4   0.443820  0.481481  ...    True    False        True       False  False   
+5   0.443820  0.462963  ...    True    False       False        True   True   
+6   0.511236  0.537037  ...    True    False        True       False   True   
+7   0.528090  0.518519  ...   False     True        True       False  False   
+8   0.550562  0.518519  ...    True    False        True       False   True   
+9   0.707865  0.722222  ...    True    False        True       False   True   
+10  0.612360  0.629630  ...    True    False        True       False  False   
+11  0.533708  0.537037  ...    True    False       False        True  False   
+12  0.640449  0.648148  ...    True    False       False        True  False   
+13  0.584270  0.611111  ...   False     True        True       False   True   
+14  0.584270  0.648148  ...    True    False       False        True   True   
+
+    pe_yes  ane_no  ane_yes  Target_ckd  Target_notckd  
+0     True   False     True        True          False  
+1    False    True    False        True          False  
+2    False    True    False        True          False  
+3    False   False     True        True          False  
+4     True    True    False        True          False  
+5    False   False     True        True          False  
+6    False    True    False        True          False  
+7     True   False     True        True          False  
+8    False    True    False        True          False  
+9    False    True    False        True          False  
+10    True    True    False        True          False  
+11    True    True    False        True          False  
+12    True    True    False        True          False  
+13   False    True    False        True          False  
+14   False    True    False        True          False",Data Processing,No,,verified
+P200,112b5570-40c1-70f5-ada6-8cd2d2eb5007,e9e5d6c0-f8df-47c6-86f4-1ec1b91e8df6,"if there are twelve columns and I don't want to have to create a copy, how would I do this",Data Processing,Yes,,verified
